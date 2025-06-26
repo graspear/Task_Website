@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Company Team Page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+         <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Bootstrap Icons CDN (for bi-activity, bi-wifi, etc.) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- AOS Library CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+     <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Boxicons for icons -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+       <style>
+
+                /* Base styles for the mobile nav */
+        .mobile-nav-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 998;
+            display: none; /* Hidden by default */
+        }
+
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            right: -300px; /* Hidden by default */
+            width: 300px;
+            height: 100vh;
+            background: #fff;
+            z-index: 999;
+            transition: right 0.3s ease-in-out;
+            padding: 20px;
+            box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+            overflow-y: auto; /* Enable scrolling for long menus */
+        }
+
+        .mobile-nav.open {
+            right: 0; /* Slide in when open */
+        }
+
+        .mobile-nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .mobile-nav ul li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .mobile-nav ul li:last-child {
+            border-bottom: none;
+        }
+
+        .mobile-nav ul li a {
+            display: block;
+            color: #4B5563; /* gray-700 */
+            font-weight: 500;
+            padding: 8px 0;
+            transition: color 0.2s ease-in-out;
+        }
+
+        .mobile-nav ul li a.active,
+        .mobile-nav ul li a:hover {
+            color: #10B981; /* green-600 */
+        }
+
+        /* Dropdown specific styles for mobile nav */
+        .mobile-nav .dropdown-toggle {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .mobile-nav .dropdown-menu {
+            padding-left: 20px;
+            list-style: none;
+            margin-top: 5px;
+        }
+
+        .mobile-nav .dropdown-menu li {
+            border-bottom: none;
+            padding: 5px 0;
+        }
+
+        /* Deep Dropdown for mobile */
+        .mobile-nav .deep-dropdown .deep-dropdown-menu {
+            padding-left: 20px;
+        }
+
+        /* Hamburger icon for mobile */
+        .mobile-nav-toggle {
+            font-size: 28px;
+            color: #4B5563; /* gray-700 */
+            cursor: pointer;
+            line-height: 0;
+            transition: color 0.3s ease;
+        }
+
+        .mobile-nav-toggle:hover {
+            color: #10B981; /* green-600 */
+        }
+
+        /* Fixed header shadow on scroll */
+        body.scrolled #header {
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Desktop Dropdown Menus */
+        .main-nav .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: white;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            border-radius: 0.375rem; /* rounded-md */
+            min-width: 160px;
+            padding: 8px 0;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .main-nav .dropdown.group:hover .dropdown-menu {
+            display: block;
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .main-nav .dropdown-menu a {
+            padding: 10px 16px;
+            display: block;
+            color: #4B5563; /* gray-700 */
+            white-space: nowrap;
+            transition: background-color 0.15s ease, color 0.15s ease;
+        }
+
+        .main-nav .dropdown-menu a:hover {
+            background-color: #ECFDF5; /* green-100 */
+            color: #059669; /* green-700 */
+        }
+
+        /* Deep Dropdown specific styles for desktop */
+        .main-nav .deep-dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 100%; /* Positions it to the right of the parent menu item */
+            background-color: white;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            border-radius: 0.375rem; /* rounded-md */
+            min-width: 160px;
+            padding: 8px 0;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .main-nav .deep-dropdown.group:hover .deep-dropdown-menu {
+            display: block;
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        :root {
+            --primary-color: #1bbd36;
+            --text-color: #333;
+            --light-gray: #f5f5f5;
+            --dark-color: #222;
+            --light-color: #fff;
+            --gray-color: #f5f5f5;
+            --font-primary: 'Inter', sans-serif;
+        }
+        body {
+            font-family: var(--font-primary);
+            line-height: 1.6;
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+        }
+        .group:hover .group-hover\:block {
+            display: block;
+        }
+        .dropdown-submenu:hover .dropdown-menu-deep {
+            display: block;
+        }
+        .dropdown-menu-deep {
+            display: none;
+            position: absolute;
+            left: 100%;
+            top: 0;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 0.375rem;
+            margin-left: 0.5rem;
+            min-width: 12rem;
+            z-index: 20;
+        }
+        .about {
+            margin: 10px;
+            padding: 50px;
+            box-sizing: border-box;
+            padding-top: 50px
+        }
+        .about .row {
+            display: flex;
+            flex-wrap: wrap;
+            width: 100%;
+            font-size: 20px;
+            align-items: flex-start;
+        }
+        .about .col-left {
+            flex: 0 0 50%;
+            max-width: 50%;
+            padding-right: 20px;
+            padding-left: 0;
+        }
+        .about .col-right {
+            flex: 0 0 50%;
+            max-width: 50%;
+            padding-left: 20px;
+            padding-right: 0;
+        }
+        .about .col-right img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        .about .content h3 {
+            font-weight: 600;
+            font-size: 46px;
+        }
+        .section-title {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        .section-title h2 {
+            font-size: 32px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--dark-color);
+        }
+        .divider {
+            width: 50px;
+            height: 3px;
+            background: var(--primary-color);
+            margin: 0 auto 20px;
+        }
+        .section-description {
+            max-width: 600px;
+            margin: 0 auto 40px;
+            color: #666;
+            font-size: 16px;
+        }
+        .clients-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+            text-align: center;
+        }
+        .clients-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+        .client-item {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100px;
+        }
+        .client-item:hover {
+            transform: translateY(-5px);
+        }
+        .skills-section {
+            padding: 80px ;
+            text-align: center;
+        }
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+        .skill-item {
+            text-align: left;
+        }
+        .skill-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        .skill-name {
+            font-weight: 500;
+            font-size: 16px;
+            text-transform: uppercase;
+        }
+        .skill-percent {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        .progress-bar {
+            height: 10px;
+            background: var(--gray-color);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            background: var(--primary-color);
+            border-radius: 5px;
+            width: 0;
+            transition: width 1.5s ease-out;
+        }
+        .animate .progress-fill {
+            width: var(--progress-width);
+        }
+        @media (max-width: 768px) {
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+            .clients-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+            .about .col-left,
+            .about .col-right {
+                flex: 0 0 100%;
+                max-width: 100%;
+                padding-left: 0;
+                padding-right: 0;
+            }
+            .about .col-left {
+                margin-bottom: 20px;
+            }
+            .about .content h3 {
+                font-size: 36px;
+            }
+        }
+        @media (max-width: 480px) {
+            .clients-grid {
+                grid-template-columns: 1fr;
+            }
+            .section-title h2 {
+                font-size: 28px;
+            }
+        }
+        .section-description{
+            padding-top: 100px;
+        }
+        .green-space{
+            padding-top: 70px;
+        }
+    </style>
+</head>
+  <!-- ======= Header ======= -->
+    <header id="header" class="fixed top-0 w-full z-50 bg-white py-4 px-6 transition-all duration-300">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="logo text-3xl font-bold text-gray-800">
+                <a href="home.html">COMPANY<span class="text-green-600">.</span></a>
+            </h1>
+
+            <!-- Desktop Navigation -->
+            <nav class="main-nav hidden md:flex items-center space-x-8">
+                <ul class="flex items-center space-x-8">
+                    <li><a href="index.html" class="text-gray-600 font-medium hover:text-green-600 transition-colors duration-200">HOME</a></li>
+                    <li class="dropdown relative group">
+                        <a href="about.html" class="text-gray-600 font-medium hover:text-green-600 transition-colors duration-200 flex items-center">
+                            ABOUT<i class="bx bx-chevron-down ml-1"></i>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="about-Team.html">Team</a></li>
+                            <li><a href="about-Testimonials.html">Testimonials</a></li>
+                            <li class="deep-dropdown relative group">
+                                <a href="#" class="flex items-center justify-between">
+                                    Deep Dropdown <i class="bx bx-chevron-right ml-1"></i>
+                                </a>
+                                <ul class="deep-dropdown-menu">
+                                    <li><a href="#">Deep Dropdown 1</a></li>
+                                    <li><a href="#">Deep Dropdown 2</a></li>
+                                    <li><a href="#">Deep Dropdown 3</a></li>
+                                    <li><a href="#">Deep Dropdown 4</a></li>
+                                    <li><a href="#">Deep Dropdown 5</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><a href="Services.html" class="text-gray-600 font-medium hover:text-green-600 transition-colors duration-200">SERVICES</a></li>
+                    <li><a href="Portfolio.html" class="text-gray-600 font-medium hover:text-green-600 transition-colors duration-200">PORTFOLIO</a></li>
+                    <li><a href="Pricing.html" class="text-gray-600 font-medium hover:text-green-600 transition-colors duration-200">PRICING</a></li>
+                    <li><a href="Blog.html" class="text-gray-600 font-medium hover:text-green-600 transition-colors duration-200">BLOG</a></li>
+                    <li><a href="Contact.html" class="text-gray-600 font-medium hover:text-green-600 transition-colors duration-200">CONTACT</a></li>
+                </ul>
+            </nav>
+
+            <!-- Social Links (Desktop) -->
+            <div class="hidden md:flex items-center space-x-4">
+                <a href="index.html" class="text-gray-500 hover:text-green-600 transition-colors duration-200"><i class='bx bxl-twitter text-xl'></i></a>
+                <a href="index.html" class="text-gray-500 hover:text-green-600 transition-colors duration-200"><i class='bx bxl-facebook text-xl'></i></a>
+                <a href="index.html" class="text-gray-500 hover:text-green-600 transition-colors duration-200"><i class='bx bxl-instagram text-xl'></i></a>
+                <a href="index.html" class="text-gray-500 hover:text-green-600 transition-colors duration-200"><i class='bx bxl-linkedin text-xl'></i></a>
+            </div>
+
+            <!-- Mobile Navigation Toggle -->
+            <i class="bx bx-menu mobile-nav-toggle md:hidden" id="mobile-nav-toggle"></i>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation Menu -->
+    <div class="mobile-nav-overlay" id="mobile-nav-overlay"></div>
+    <nav class="mobile-nav" id="mobile-nav">
+        <i class="bx bx-x text-3xl cursor-pointer absolute top-4 right-4 text-gray-700" id="mobile-nav-close"></i>
+        <ul class="mt-12">
+            <li><a href="index.html" class="text-green-600 font-semibold">HOME</a></li>
+            <li class="dropdown">
+                <a href="about.html" class="flex items-center justify-between dropdown-toggle">ABOUT<i class="bx bx-chevron-down"></i></a>
+                <ul class="dropdown-menu hidden">
+                    <li><a href="about-Team.html">Team</a></li>
+                    <li><a href="about-Testimonials.html">Testimonials</a></li>
+                    <li class="deep-dropdown">
+                        <a href="#" class="flex items-center justify-between dropdown-toggle">Deep Dropdown <i class="bx bx-chevron-right"></i></a>
+                        <ul class="deep-dropdown-menu hidden">
+                            <li><a href="#">Deep Dropdown 1</a></li>
+                            <li><a href="#">Deep Dropdown 2</a></li>
+                            <li><a href="#">Deep Dropdown 3</a></li>
+                            <li><a href="#">Deep Dropdown 4</a></li>
+                            <li><a href="#">Deep Dropdown 5</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li><a href="Services.html">SERVICES</a></li>
+            <li><a href="Portfolio.html">PORTFOLIO</a></li>
+            <li><a href="Pricing.html">PRICING</a></li>
+            <li><a href="Blog.html">BLOG</a></li>
+            <li><a href="Contact.html">CONTACT</a></li>
+        </ul>
+    </nav>
+    <div class="green-space">
+     <section class="bg-green-600 text-white py-4 px-6 md:px-12 flex justify-between items-center ">
+        <h2 class="text-xl font-semibold">Team</h2>
+        <div class="text-sm">
+            <a href="index.html" class="text-white hover:underline">Home</a>
+            <span class="mx-2">/</span>
+            <span class="font-semibold">Team</span>
+        </div>
+    </section>
+</div>
+
+    
+
+    <main class="container mx-auto py-10 px-6 md:px-12">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="bg-white rounded-lg shadow-md overflow-hidden text-center" data-aos="fade-up" data-aos-delay="100">
+                <img
+                    src="team-1.jpg"
+                    alt="Walter White - Chief Executive Officer"
+                    class="w-full h-auto object-cover"
+                    onerror="this.onerror=null;this.src='https://placehold.co/400x400/cccccc/333333?text=Image+Not+Found';"
+                >
+                <div class="p-6">
+                    <h3 class="text-lg font-semibold text-gray-800">Walter White</h3>
+                    <p class="text-sm text-gray-600 mt-1">Chief Executive Officer</p>
+                    <div class="flex justify-center space-x-3 mt-4">
+                        <a href="#" class="text-gray-500 hover:text-blue-500"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-500 hover:text-blue-700"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-gray-500 hover:text-pink-600"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-gray-500 hover:text-blue-800"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white rounded-lg shadow-md overflow-hidden text-center" data-aos="fade-up" data-aos-delay="200">
+                <img
+                    src="team-2.jpg"
+                    alt="Sarah Jhonson - Product Manager"
+                    class="w-full h-auto object-cover"
+                    onerror="this.onerror=null;this.src='https://placehold.co/400x400/cccccc/333333?text=Image+Not+Found';"
+                >
+                <div class="p-6">
+                    <h3 class="text-lg font-semibold text-gray-800">Sarah Jhonson</h3>
+                    <p class="text-sm text-gray-600 mt-1">Product Manager</p>
+                    <div class="flex justify-center space-x-3 mt-4">
+                        <a href="#" class="text-gray-500 hover:text-blue-500"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-500 hover:text-blue-700"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-gray-500 hover:text-pink-600"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-gray-500 hover:text-blue-800"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white rounded-lg shadow-md overflow-hidden text-center" data-aos="fade-up" data-aos-delay="300">
+                <img
+                    src="team-3.jpg"
+                    alt="William Anderson - CTO"
+                    class="w-full h-auto object-cover"
+                    onerror="this.onerror=null;this.src='https://placehold.co/400x400/cccccc/333333?text=Image+Not+Found';"
+                >
+                <div class="p-6">
+                    <h3 class="text-lg font-semibold text-gray-800">William Anderson</h3>
+                    <p class="text-sm text-gray-600 mt-1">CTO</p>
+                    <div class="flex justify-center space-x-3 mt-4">
+                        <a href="#" class="text-gray-500 hover:text-blue-500"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-500 hover:text-blue-700"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-gray-500 hover:text-pink-600"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-gray-500 hover:text-blue-800"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white rounded-lg shadow-md overflow-hidden text-center" data-aos="fade-up" data-aos-delay="400">
+                <img
+                    src="team-4.jpg"
+                    alt="Amanda Jepson - Accountant"
+                    class="w-full h-auto object-cover"
+                    onerror="this.onerror=null;this.src='https://placehold.co/400x400/cccccc/333333?text=Image+Not+Found';"
+                >
+                <div class="p-6">
+                    <h3 class="text-lg font-semibold text-gray-800">Amanda Jepson</h3>
+                    <p class="text-sm text-gray-600 mt-1">Accountant</p>
+                    <div class="flex justify-center space-x-3 mt-4">
+                        <a href="#" class="text-gray-500 hover:text-blue-500"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-500 hover:text-blue-700"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-gray-500 hover:text-pink-600"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-gray-500 hover:text-blue-800"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="bg-gray-900 text-gray-400 py-8 px-6 md:px-12 relative">
+        <div class="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 pb-6 border-b border-gray-700">
+            <div>
+                <h3 class="text-white text-xl font-bold mb-4">Company</h3>
+                <address class="not-italic text-sm leading-relaxed">
+                    Au08 Adam Street<br>
+                    New York, NY 535022<br><br>
+                    <strong>Phone:</strong> +1 5589 55488 55<br>
+                    <strong>Email:</strong> info@example.com<br>
+                </address>
+                <div class="flex space-x-4 mt-6">
+                    <a href="#" class="w-9 h-9 flex items-center justify-center rounded-full bg-gray-800 hover:bg-green-600 transition-colors duration-300 text-gray-400 hover:text-white">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="w-9 h-9 flex items-center justify-center rounded-full bg-gray-800 hover:bg-green-600 transition-colors duration-300 text-gray-400 hover:text-white">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="w-9 h-9 flex items-center justify-center rounded-full bg-gray-800 hover:bg-green-600 transition-colors duration-300 text-gray-400 hover:text-white">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="w-9 h-9 flex items-center justify-center rounded-full bg-gray-800 hover:bg-green-600 transition-colors duration-300 text-gray-400 hover:text-white">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                </div>
+            </div>
+            <div>
+                <h3 class="text-white text-xl font-bold mb-4">Useful Links</h3>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="index.html" class="hover:text-green-600 transition-colors duration-300 flex items-center"><i class="fas fa-chevron-right text-green-600 text-xs mr-2"></i> Home</a></li>
+                    <li><a href="about.html" class="hover:text-green-600 transition-colors duration-300 flex items-center"><i class="fas fa-chevron-right text-green-600 text-xs mr-2"></i> About us</a></li>
+                    <li><a href="Services.html" class="hover:text-green-600 transition-colors duration-300 flex items-center"><i class="fas fa-chevron-right text-green-600 text-xs mr-2"></i> Services</a></li>
+                    <li><a href="Services.html" class="hover:text-green-600 transition-colors duration-300 flex items-center"><i class="fas fa-chevron-right text-green-600 text-xs mr-2"></i> Terms of service</a></li>
+                    <li><a href="Services.html" class="hover:text-green-600 transition-colors duration-300 flex items-center"><i class="fas fa-chevron-right text-green-600 text-xs mr-2"></i> Privacy policy</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="text-white text-xl font-bold mb-4">Our Services</h3>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="Services.html" class="hover:text-green-600 transition-colors duration-300 flex items-center"><i class="fas fa-chevron-right text-green-600 text-xs mr-2"></i> Web Design</a></li>
+                    <li><a href="Services.html" class="hover:text-green-600 transition-colors duration-300 flex items-center"><i class="fas fa-chevron-right text-green-600 text-xs mr-2"></i> Web Development</a></li>
+                    <li><a href="Services.html" class="hover:text-green-600 transition-colors duration-300 flex items-center"><i class="fas fa-chevron-right text-green-600 text-xs mr-2"></i> Product Management</a></li>
+                    <li><a href="Services.html" class="hover:text-green-600 transition-colors duration-300 flex items-center"><i class="fas fa-chevron-right text-green-600 text-xs mr-2"></i> Marketing</a></li>
+                    <li><a href="Services.html" class="hover:text-green-600 transition-colors duration-300 flex items-center"><i class="fas fa-chevron-right text-green-600 text-xs mr-2"></i> Graphic Design</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="text-white text-xl font-bold mb-4">Our Newsletter</h3>
+                <p class="text-sm mb-4">Subscribe to our newsletter and receive the latest news about our products and services!</p>
+                <form class="flex">
+                    <input type="email" placeholder="Enter your email" class="flex-grow p-3 rounded-l-md bg-gray-800 border border-gray-700 focus:outline-none focus:border-green-600 text-white text-sm">
+                    <button type="submit" class="bg-green-600 text-white px-6 py-3 rounded-r-md hover:bg-green-700 transition-colors duration-300 text-sm">Subscribe</button>
+                </form>
+            </div>
+        </div>
+        <div class="container mx-auto text-center pt-8 text-sm text-gray-500">
+            <div class="mb-2">&copy; Copyright <strong>Company</strong>. All Rights Reserved</div>
+            <div>Designed by <a href="https://bootstrapmade.com/" class="text-green-600 hover:underline">Home</a> Distributed by <a href="https://themewagon.com/" class="text-green-600 hover:underline">Company-Home</a></div>
+        </div>
+        <a href="#" class="fixed bottom-6 right-6 bg-green-600 text-white p-3 rounded-full shadow-lg hover:bg-green-700 transition-colors duration-300 z-50">
+            <i class="fas fa-arrow-up text-lg"></i>
+        </a>
+    </footer>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const skillsSection = document.querySelector('.skills-section');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.2 });
+            observer.observe(skillsSection);
+        });
+
+         // Initialize AOS
+        AOS.init({
+            duration: 1000, // Duration of animation in ms
+            once: true,     // Whether animation should happen only once - while scrolling down
+        });
+    
+        document.addEventListener('DOMContentLoaded', () => {
+            const mobileNavToggle = document.getElementById('mobile-nav-toggle');
+            const mobileNavClose = document.getElementById('mobile-nav-close');
+            const mobileNav = document.getElementById('mobile-nav');
+            const mobileNavOverlay = document.getElementById('mobile-nav-overlay');
+            const header = document.getElementById('header');
+
+            // Toggle mobile navigation
+            function toggleMobileNav() {
+                mobileNav.classList.toggle('open');
+                mobileNavOverlay.style.display = mobileNav.classList.contains('open') ? 'block' : 'none';
+                document.body.classList.toggle('overflow-hidden', mobileNav.classList.contains('open'));
+            }
+
+            mobileNavToggle.addEventListener('click', toggleMobileNav);
+            mobileNavClose.addEventListener('click', toggleMobileNav);
+            mobileNavOverlay.addEventListener('click', toggleMobileNav); // Close when clicking overlay
+
+            // Mobile dropdowns
+            const mobileDropdownToggles = mobileNav.querySelectorAll('.dropdown-toggle');
+            mobileDropdownToggles.forEach(toggle => {
+                toggle.addEventListener('click', (event) => {
+                    event.preventDefault(); // Prevent navigation on click
+                    const parentLi = toggle.closest('li');
+                    const dropdownMenu = parentLi.querySelector(':scope > .dropdown-menu, :scope > .deep-dropdown-menu');
+
+                    if (dropdownMenu) {
+                        dropdownMenu.classList.toggle('hidden');
+                        const chevron = toggle.querySelector('.bx');
+                        if (chevron) {
+                            if (dropdownMenu.classList.contains('hidden')) {
+                                // Restore original chevron based on whether it's a deep dropdown or not
+                                if (parentLi.classList.contains('deep-dropdown')) {
+                                    chevron.classList.remove('bx-chevron-down');
+                                    chevron.classList.add('bx-chevron-right');
+                                } else {
+                                    chevron.classList.remove('bx-chevron-up');
+                                    chevron.classList.add('bx-chevron-down');
+                                }
+                            } else {
+                                // Change chevron for open dropdown
+                                if (parentLi.classList.contains('deep-dropdown')) {
+                                    chevron.classList.remove('bx-chevron-right');
+                                    chevron.classList.add('bx-chevron-down'); // Or 'bx-chevron-up' if you prefer
+                                } else {
+                                    chevron.classList.remove('bx-chevron-down');
+                                    chevron.classList.add('bx-chevron-up');
+                                }
+                            }
+                        }
+                    }
+                });
+            });
+
+            // Header shadow on scroll
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 0) {
+                    header.classList.add('shadow-md'); /* Tailwind shadow-md */
+                } else {
+                    header.classList.remove('shadow-md');
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,1906 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Company - Corporate Website Template</title> 
+ 
+    <!-- Google Fonts - Inter for modern look --> 
+    <link 
+href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display
+ =swap" rel="stylesheet"> 
+ 
+    <!-- Boxicons for general icons --> 
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'> 
+     
+    <!-- Bootstrap Icons for services section --> 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap
+icons@1.11.3/font/bootstrap-icons.min.css"> 
+ 
+     <!-- Bootstrap CSS --> 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" 
+rel="stylesheet" xintegrity="sha384
+QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" 
+crossorigin="anonymous"> 
+    <!-- Bootstrap Icons CSS --> 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap
+icons@1.11.3/font/bootstrap-icons.min.css">  
+ 
+      <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"> 
+ 
+    <link rel="icon" href="https://placehold.co/32x32/cccccc/ffffff?text=C" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'> 
+ 
+    <!-- Custom CSS --> 
+ 
+    <!-- Tailwind CSS CDN --> 
+    <script src="https://cdn.tailwindcss.com"></script> 
+    <style> 
+
+
+   /* Base styles for the mobile nav */
+        .mobile-nav-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 998;
+            display: none; /* Hidden by default */
+        }
+
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            right: -300px; /* Hidden by default */
+            width: 300px;
+            height: 100vh;
+            background: #fff;
+            z-index: 999;
+            transition: right 0.3s ease-in-out;
+            padding: 20px;
+            box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+            overflow-y: auto; /* Enable scrolling for long menus */
+        }
+
+        .mobile-nav.open {
+            right: 0; /* Slide in when open */
+        }
+
+        .mobile-nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .mobile-nav ul li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .mobile-nav ul li:last-child {
+            border-bottom: none;
+        }
+
+        .mobile-nav ul li a {
+            display: block;
+            color: #4B5563; /* gray-700 */
+            font-weight: 500;
+            padding: 8px 0;
+            transition: color 0.2s ease-in-out;
+        }
+
+        .mobile-nav ul li a.active,
+        .mobile-nav ul li a:hover {
+            color: #10B981; /* green-600 */
+        }
+
+        /* Dropdown specific styles for mobile nav */
+        .mobile-nav .dropdown-toggle {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .mobile-nav .dropdown-menu {
+            padding-left: 20px;
+            list-style: none;
+            margin-top: 5px;
+        }
+
+        .mobile-nav .dropdown-menu li {
+            border-bottom: none;
+            padding: 5px 0;
+        }
+
+        /* Deep Dropdown for mobile */
+        .mobile-nav .deep-dropdown .deep-dropdown-menu {
+            padding-left: 20px;
+        }
+
+        /* Hamburger icon for mobile */
+        .mobile-nav-toggle {
+            font-size: 28px;
+            color: #4B5563; /* gray-700 */
+            cursor: pointer;
+            line-height: 0;
+            transition: color 0.3s ease;
+        }
+
+        .mobile-nav-toggle:hover {
+            color: #10B981; /* green-600 */
+        }
+
+        /* Fixed header shadow on scroll */
+        body.scrolled #header {
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Desktop Dropdown Menus */
+        .main-nav .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: white;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            border-radius: 0.375rem; /* rounded-md */
+            min-width: 160px;
+            padding: 8px 0;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .main-nav .dropdown.group:hover .dropdown-menu {
+            display: block;
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .main-nav .dropdown-menu a {
+            padding: 10px 16px;
+            display: block;
+            color: #4B5563; /* gray-700 */
+            white-space: nowrap;
+            transition: background-color 0.15s ease, color 0.15s ease;
+        }
+
+        .main-nav .dropdown-menu a:hover {
+            background-color: #ECFDF5; /* green-100 */
+            color: #059669; /* green-700 */
+        }
+
+        /* Deep Dropdown specific styles for desktop */
+        .main-nav .deep-dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 100%; /* Positions it to the right of the parent menu item */
+            background-color: white;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            border-radius: 0.375rem; /* rounded-md */
+            min-width: 160px;
+            padding: 8px 0;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .main-nav .deep-dropdown.group:hover .deep-dropdown-menu {
+            display: block;
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0; /* Ensure no default body margin */
+        }
+
+        .dropdown-toggle .fa-chevron-down {
+            transition: transform 0.3s ease;
+        }
+
+        .dropdown-toggle:hover .fa-chevron-down {
+            transform: rotate(180deg);
+        }
+
+        @media (max-width: 640px) {
+            .navbar-menu {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .navbar-menu li {
+                margin-left: 0;
+                margin-bottom: 0.5rem;
+            }
+            .navbar-social {
+                margin-top: 1rem;
+                justify-content: flex-start;
+            }
+        }
+        :root {
+            --primary-color: #1bbd36;
+            --text-color: #333;
+            --light-gray: #f5f5f5;
+            --dark-color: #222;
+            --light-color: #fff;
+            --gray-color: #f5f5f5;
+            --font-primary: 'Inter', sans-serif;
+        }
+
+        body {
+            font-family: var(--font-primary);
+            line-height: 1.6;
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+        }
+
+        .group:hover .group-hover\:block {
+            display: block;
+        }
+
+        .dropdown-submenu:hover .dropdown-menu-deep {
+            display: block;
+        }
+
+        .dropdown-menu-deep {
+            display: none;
+            position: absolute;
+            left: 100%;
+            top: 0;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 0.375rem;
+            margin-left: 0.5rem;
+            min-width: 12rem;
+            z-index: 20;
+        }
+         /* General Body Styling for better presentation */ 
+        body { 
+            font-family: 'Inter', sans-serif; /* Using Inter font, common for modern UIs */ 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+            overflow-x: hidden; /* Prevent horizontal scroll */ 
+        } 
+ 
+        /* Hero Section Styling */ 
+        .hero { 
+            width: 100%; 
+            position: relative; /* Needed for absolute positioning of carousel controls/indicators 
+*/ 
+            overflow: hidden; /* Ensures content doesn't spill out */ 
+            padding: 0; /* Remove default padding if any */ 
+        } 
+ 
+        /* Carousel Item Styling */ 
+        .hero .carousel-item { 
+            height: 100vh; /* Make each slide take full viewport height */ 
+            min-height: 500px; /* Minimum height for smaller screens */ 
+            background-size: cover; /* Ensures background image covers the area */ 
+            background-position: center center; /* Centers the background image */ 
+            display: flex; /* Use flexbox for vertical alignment */ 
+            align-items: flex-end; /* Align content to the bottom */ 
+            justify-content: center; /* Horizontally center content */ 
+            position: relative; /* For absolute positioning of overlay/text container */ 
+            padding-bottom: 50px; /* Add padding at the bottom to lift content, ensuring space 
+for indicators */ 
+        } 
+ 
+        .hero .carousel-item img { 
+            position: absolute; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; /* Ensures the image covers the entire carousel item area */ 
+            z-index: 1; /* Place image behind the content overlay */ 
+        } 
+ 
+        /* Container for text content within carousel item */ 
+        .hero .carousel-item .container { 
+            position: relative; 
+            z-index: 2; /* Place content above the image */ 
+            color: #fff; /* White text for readability on dark backgrounds */ 
+            text-align: center; 
+            padding: 20px; 
+            background-color: rgba(0, 0, 0, 0.4); /* Semi-transparent black overlay for readability 
+*/ 
+            border-radius: 8px; 
+            max-width: 90%; /* Adjust max-width for container */ 
+            margin-left: auto; 
+            margin-right: auto; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3); /* Subtle shadow for depth */ 
+            backdrop-filter: blur(3px); /* Add a subtle blur effect to the background */ 
+            margin-bottom: 20px; /* Additional margin from the bottom of the viewport */ 
+        } 
+ 
+        /* Heading (h2) Styling */ 
+        .hero .carousel-item h2 { 
+            font-size: 2.2rem; /* Large font size for headings */ 
+            font-weight: 700; /* Bold text */ 
+            margin-bottom: 20px; 
+            line-height: 1.2; 
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Text shadow for better contrast */ 
+        } 
+ 
+        /* Paragraph (p) Styling */ 
+        .hero .carousel-item p { 
+            font-size: 1.1rem; 
+            margin-bottom: 30px; 
+            line-height: 1.6; 
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7); 
+        } 
+ 
+        /* "Read More" Button Styling */ 
+        .hero .carousel-item .btn-get-started { 
+            display: inline-block; 
+            padding: 12px 30px; 
+            border-radius: 50px; 
+            color: #fff; 
+            background-color: #1bbd36; /* Example primary color */ 
+            text-decoration: none; 
+            font-weight: 600; 
+            transition: all 0.3s ease-in-out; 
+            border: 2px solid #1bbd36; 
+           /* Shadow for button */ 
+        } 
+ 
+        .hero .carousel-item .btn-get-started:hover { 
+            background-color: transparent; 
+            color:#1bbd36; 
+            transform: translateY(-2px); /* Slight lift on hover */ 
+             
+        } 
+ 
+        /* Carousel Controls (Prev/Next Arrows) */ 
+        .hero .carousel-control-prev, 
+        .hero .carousel-control-next { 
+            width: 5%; /* Adjust width for click area */ 
+            opacity: 0.8; 
+            transition: opacity 0.3s; 
+            top: auto; /* Override default top positioning */ 
+            top: 500px; /* Position from the bottom */ 
+            transform: translateY(0); /* Reset any default transforms that might interfere */ 
+            align-items: center; /* Center the icon vertically within the control area */ 
+            display: flex; /* Ensure flexbox for centering */ 
+            justify-content: center; /* Center the icon horizontally */ 
+        } 
+ 
+        .hero .carousel-control-prev:hover, 
+        .hero .carousel-control-next:hover { 
+            opacity: 0; 
+        } 
+ 
+        .hero .carousel-control-prev-icon, 
+        .hero .carousel-control-next-icon { 
+            font-size: 2.5rem; /* Size of the Bootstrap icons */ 
+            color: #fff; 
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); 
+        } 
+ 
+        /* Carousel Indicators */ 
+        .hero .carousel-indicators { 
+            bottom: 0px; /* Moved indicators to the absolute bottom of the container */ 
+            position: absolute; /* Ensure it's absolutely positioned within .hero */ 
+            left: 50%; 
+            transform: translateX(-50%); 
+            z-index: 3; /* Ensure it's above other elements if needed */ 
+        } 
+ 
+        .hero .carousel-indicators button { /* Use 'button' for Bootstrap 5 indicators */ 
+            background-color: rgba(255, 255, 255, 0.5); 
+            border-radius: 50%; /* Make them circular */ 
+            width: 10px; 
+            height: 10px; 
+            margin: 0 7px; 
+            cursor: pointer; 
+            transition: all 0.3s; 
+            border: none; /* Remove default button border */ 
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3); 
+        } 
+ 
+        .hero .carousel-indicators .active { 
+            background-color: #fff; 
+            width: 12px; 
+            height: 12px; 
+            box-shadow: 0 3px 8px rgba(0,0,0,0.5); 
+        } 
+ 
+        /* Responsive Adjustments */ 
+        @media (max-width: 992px) { 
+            .hero .carousel-item h2 { 
+                font-size: 2.5rem; 
+            } 
+ 
+            .hero .carousel-item p { 
+                font-size: 1rem; 
+            } 
+        } 
+ 
+        @media (max-width: 768px) { 
+            .hero .carousel-item { 
+                height: 70vh; /* Reduce height on smaller screens */ 
+                min-height: 400px; 
+                padding-bottom: 30px; /* Adjust padding for smaller screens */ 
+            } 
+ 
+            .hero .carousel-item h2 { 
+                font-size: 2rem; 
+            } 
+ 
+            .hero .carousel-item p { 
+                font-size: 0.9rem; 
+            } 
+ 
+            .hero .carousel-item .container { 
+                padding: 15px; 
+                max-width: 95%; /* Make container wider on small screens */ 
+                margin-bottom: 15px; /* Adjust margin for smaller screens */ 
+            } 
+ 
+            .hero .carousel-control-prev, 
+            .hero .carousel-control-next { 
+                width: 8%; 
+                bottom: 0px; /* Adjusted for smaller screens */ 
+            } 
+ 
+            .hero .carousel-control-prev-icon, 
+            .hero .carousel-control-next-icon { 
+                font-size: 2rem; 
+            } 
+ 
+            .hero .carousel-indicators { 
+                bottom: 0px; 
+            } 
+        } 
+ 
+        @media (max-width: 576px) { 
+            .hero .carousel-item { 
+                padding-bottom: 20px; 
+            } 
+            .hero .carousel-item h2 { 
+                font-size: 1.8rem; 
+            } 
+ 
+            .hero .carousel-item p { 
+                font-size: 0.85rem; 
+            } 
+ 
+            .hero .carousel-item .btn-get-started { 
+                padding: 10px 20px; 
+                font-size: 0.9rem; 
+            } 
+ 
+            .hero .carousel-control-prev, 
+            .hero .carousel-control-next { 
+                bottom: 0px; /* Adjusted for very small screens */ 
+            } 
+ 
+            .hero .carousel-indicators { 
+                bottom: 0px; 
+            } 
+        } 
+ 
+ 
+        body { 
+            font-family: 'Inter', sans-serif; 
+            font-size: 15px; 
+            overflow-x: hidden; /* Prevent horizontal scroll due to animations/transforms */ 
+        } 
+ 
+        /* Header Specific Styles */ 
+        #header.sticky { 
+            @apply shadow-lg; 
+        } 
+ 
+        /* Navigation Dropdown Styles */ 
+        .mobile-nav .dropdown-toggle { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            width: 100%; 
+        } 
+ 
+        .mobile-nav .dropdown-menu { 
+            padding-left: 20px; 
+            list-style: none; 
+            margin-top: 5px; 
+        } 
+ 
+        .mobile-nav .dropdown-menu li { 
+            border-bottom: none; 
+            padding: 5px 0; 
+        } 
+ 
+        /* Deep Dropdown for mobile */ 
+        .mobile-nav .deep-dropdown .deep-dropdown-menu { 
+            padding-left: 20px; 
+        } 
+ 
+        /* Hamburger icon for mobile */ 
+        .mobile-nav-toggle { 
+            font-size: 28px; 
+            color: #4B5563; /* gray-700 */ 
+            cursor: pointer; 
+            line-height: 0; 
+            transition: color 0.3s ease; 
+        } 
+ 
+        .mobile-nav-toggle:hover { 
+            color: #10B981; /* green-600 */ 
+        } 
+ 
+        /* Fixed header shadow on scroll */ 
+        body.scrolled #header { 
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); 
+        } 
+ 
+        /* Desktop Dropdown Menus */ 
+        .main-nav .dropdown-menu { 
+            display: none; 
+            position: absolute; 
+            top: 100%; 
+            left: 0; 
+            background-color: white; 
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1); 
+            border-radius: 0.375rem; /* rounded-md */ 
+            min-width: 160px; 
+            padding: 8px 0; 
+            z-index: 1000; 
+            opacity: 0; 
+            visibility: hidden; 
+            transform: translateY(10px); 
+            transition: opacity 0.3s ease, transform 0.3s ease; 
+        } 
+ 
+        .main-nav .dropdown.group:hover .dropdown-menu { 
+            display: block; 
+            opacity: 1; 
+            visibility: visible; 
+            transform: translateY(0); 
+        } 
+ 
+        .main-nav .dropdown-menu a { 
+            padding: 10px 16px; 
+            display: block; 
+            color: #4B5563; /* gray-700 */ 
+            white-space: nowrap; 
+            transition: background-color 0.15s ease, color 0.15s ease; 
+        } 
+ 
+        .main-nav .dropdown-menu a:hover { 
+            background-color: #ECFDF5; /* green-100 */ 
+            color: #059669; /* green-700 */ 
+        } 
+ 
+        /* Deep Dropdown specific styles for desktop */ 
+        .main-nav .deep-dropdown-menu { 
+            display: none; 
+            position: absolute; 
+            top: 0; 
+            left: 100%; /* Positions it to the right of the parent menu item */ 
+            background-color: white; 
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1); 
+            border-radius: 0.375rem; /* rounded-md */ 
+            min-width: 160px; 
+            padding: 8px 0; 
+            z-index: 1000; 
+            opacity: 0; 
+            visibility: hidden; 
+            transform: translateY(10px); 
+            transition: opacity 0.3s ease, transform 0.3s ease; 
+        } 
+ 
+        .main-nav .deep-dropdown.group:hover .deep-dropdown-menu { 
+            display: block; 
+            opacity: 1; 
+            visibility: visible; 
+            transform: translateY(0); 
+        } 
+ 
+        /* Services Section Icon Wrapper Background Colors */ 
+        .icon-color-blue { color: #1e88e5; } /* A shade of blue for activity icon */ 
+        .icon-color-orange { color: #fb8c00; } /* A shade of orange for wifi icon */ 
+        .icon-color-green { color: #43a047; } /* A shade of green for easel icon */ 
+        .icon-color-red { color: #e53935; } /* A shade of red for bounding-box icon */ 
+        .icon-color-purple { color: #8e24aa; } /* A shade of purple for calendar icon */ 
+        .icon-color-pink { color: #d81b60; } /* A shade of pink for chat-dots icon */ 
+         
+ 
+        .icon-wrapper.bg-blue-100 { background-color: #e0f2f7; } 
+        .icon-wrapper.bg-orange-100 { background-color: #fce8e6; } 
+        .icon-wrapper.bg-green-100 { background-color: #e6f7ed; } 
+        .icon-wrapper.bg-red-100 { background-color: #fae6ec; } 
+        .icon-wrapper.bg-purple-100 { background-color: #eeebf9; } 
+        .icon-wrapper.bg-pink-100 { background-color: #fdf3e8; } 
+ 
+ 
+        /* Portfolio Item Overlay */ 
+        .portfolio-info { 
+            opacity: 0; 
+            transition: opacity 0.3s ease-in-out; 
+            background: rgba(0, 0, 0, 0.7); 
+            @apply absolute inset-0 flex flex-col items-center justify-center text-white; 
+        } 
+ 
+        .portfolio-item:hover .portfolio-info { 
+            opacity: 1; 
+        } 
+         
+      .clients-section { 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            padding: 60px 20px; 
+            text-align: center; 
+        } 
+        .section-title{ 
+            margin-top: 10px; 
+            margin-bottom: 10px; 
+            font-size: 24px; 
+            font-style: dark bold; 
+        } 
+        .section-description{ 
+            margin-top: 10px; 
+        } 
+        .clients-grid { 
+            display: grid; 
+            grid-template-columns: repeat(4, 1fr); 
+            gap: 60px; 
+        } 
+        .client-item { 
+            background-color: white; 
+            padding: 30px; 
+            border-radius: 8px; 
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); 
+            transition: transform 0.3s ease; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            min-height: 100px; 
+        } 
+        .client-item:hover { 
+            transform: translateY(-5px); 
+        } 
+ 
+        /* Mobile Menu Overlay */ 
+        .mobile-nav-overlay { 
+            display: none; 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            background: rgba(0, 0, 0, 0.6); 
+            z-index: 998; 
+        } 
+ 
+        .mobile-nav-active .mobile-nav-overlay { 
+            display: block; 
+        } 
+ 
+        .mobile-nav { 
+            position: fixed; 
+            top: 0; 
+            right: -300px; /* Hidden off-screen */ 
+            width: 280px; 
+            height: 100%; 
+            background: white; 
+            z-index: 999; 
+            padding: 20px 0; 
+            transition: right 0.3s ease-in-out; 
+            @apply shadow-lg; 
+        } 
+ 
+        .mobile-nav-active .mobile-nav { 
+            right: 0; 
+        } 
+ 
+        .mobile-nav ul { 
+            list-style: none; 
+            padding: 0; 
+            margin: 0; 
+        } 
+ 
+        .mobile-nav ul li a { 
+            padding: 10px 20px; 
+            display: block; 
+            color: #333; 
+            @apply hover:bg-gray-100 transition-colors; 
+        } 
+ 
+        .mobile-nav ul .dropdown > a, 
+        .mobile-nav ul .deep-dropdown > a { 
+            position: relative; 
+        } 
+ 
+        .mobile-nav ul .dropdown-toggle::after { 
+            content: "\f282"; /* Bootstrap icon for caret-down */ 
+            font-family: "bootstrap-icons"; 
+            float: right; 
+            margin-top: 2px; 
+            transition: transform 0.3s ease; 
+        } 
+        .mobile-nav ul .dropdown-active .dropdown-toggle::after { 
+            transform: rotate(-180deg); 
+        } 
+ 
+        .mobile-nav ul .dropdown-menu, 
+        .mobile-nav ul .deep-dropdown-menu { 
+            position: relative; 
+            box-shadow: none; 
+            background: none; 
+            width: auto; 
+            padding-left: 20px; 
+        } 
+ 
+        .mobile-nav-toggle { 
+            display: none; /* Hide on desktop */ 
+            @apply text-3xl cursor-pointer text-gray-700; 
+        } 
+ 
+        @media (max-width: 768px) { 
+            .main-nav { 
+                display: none; /* Hide desktop nav on mobile */ 
+            } 
+            .mobile-nav-toggle { 
+                display: block; /* Show toggle on mobile */ 
+            } 
+            #header .container { 
+                @apply flex justify-between items-center; 
+            } 
+        } 
+         
+ 
+ 
+ 
+         :root { 
+            --primary-color: #1bbd36; 
+            --text-color: #333; 
+            --light-gray: #f5f5f5; 
+            --dark-color: #222; 
+            --light-color: #fff; 
+            --gray-color: #f5f5f5; 
+            --font-primary: 'Inter', sans-serif; 
+        } 
+        body { 
+            font-family: var(--font-primary); 
+            line-height: 1.6; 
+            color: var(--text-color); 
+            margin: 0; 
+            padding: 0; 
+            height: 100%; 
+            width: 100%; 
+        } 
+        .group:hover .group-hover\:block { 
+            display: block; 
+        } 
+        .dropdown-submenu:hover .dropdown-menu-deep { 
+            display: block; 
+        } 
+        .dropdown-menu-deep { 
+            display: none; 
+            position: absolute; 
+            left: 100%; 
+            top: 0; 
+            background-color: white; 
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+            border-radius: 0.375rem; 
+            margin-left: 0.5rem; 
+            min-width: 12rem; 
+            z-index: 20; 
+        } 
+        .about { 
+            margin: 10px; 
+            padding: 50px; 
+            box-sizing: border-box; 
+        } 
+        .about .row { 
+            display: flex; 
+            flex-wrap: wrap; 
+            width: 100%; 
+            font-size: 20px; 
+            align-items: flex-start; 
+        } 
+        .about .col-left { 
+            flex: 0 0 50%; 
+            max-width: 50%; 
+            padding-right: 20px; 
+            padding-left: 0; 
+        } 
+        .about .col-right { 
+            flex: 0 0 50%; 
+            max-width: 50%; 
+            padding-left: 20px; 
+            padding-right: 0; 
+        } 
+        .about .col-right img { 
+            position: absolute; 
+            width: 100%; 
+            height: 100%; 
+            border-radius: 8px; 
+            object-fit: cover; 
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); 
+            z-index: 1; 
+        } 
+        .about .content h3 { 
+            font-weight: 600; 
+            font-size: 46px; 
+        } 
+        .section-title { 
+            margin-bottom: 30px; 
+            text-align: center; 
+        } 
+        .section-title h2 { 
+            font-size: 32px; 
+            font-weight: 600; 
+            margin-bottom: 10px; 
+            color: var(--dark-color); 
+        } 
+        .divider { 
+            width: 50px; 
+            height: 3px; 
+            background: var(--primary-color); 
+            margin: 0 auto 20px; 
+        } 
+        .section-description { 
+            max-width: 600px; 
+            margin: 0 auto 40px; 
+            color: #666; 
+            font-size: 16px; 
+        } 
+        .clients-section { 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            padding: 60px 20px; 
+            text-align: center; 
+        } 
+        .clients-grid { 
+            display: grid; 
+            grid-template-columns: repeat(4, 1fr); 
+            gap: 30px; 
+        } 
+        .client-item { 
+            background-color: white; 
+            padding: 30px; 
+            border-radius: 8px; 
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); 
+            transition: transform 0.3s ease; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            min-height: 100px; 
+        } 
+        .client-item:hover { 
+            transform: translateY(-5px); 
+        } 
+        .skills-section { 
+            padding: 80px 0; 
+            text-align: center; 
+        } 
+        .skills-grid { 
+            display: grid; 
+            grid-template-columns: repeat(2, 1fr); 
+            gap: 30px; 
+        } 
+        .skill-item { 
+            text-align: left; 
+        } 
+        .skill-header { 
+            display: flex; 
+            justify-content: space-between; 
+            margin-bottom: 10px; 
+        } 
+        .skill-name { 
+            font-weight: 500; 
+            font-size: 16px; 
+            text-transform: uppercase; 
+        } 
+        .skill-percent { 
+            font-weight: 600; 
+            color: var(--primary-color); 
+        } 
+        .progress-bar { 
+            height: 10px; 
+            background: var(--gray-color); 
+            border-radius: 5px; 
+            overflow: hidden; 
+        } 
+        .progress-fill { 
+            height: 100%; 
+            background: var(--primary-color); 
+            border-radius: 5px; 
+            width: 0; 
+            transition: width 1.5s ease-out; 
+        } 
+        .animate .progress-fill { 
+            width: var(--progress-width); 
+        } 
+        @media (max-width: 768px) { 
+            .skills-grid { 
+                grid-template-columns: 1fr; 
+            } 
+            .clients-grid { 
+                grid-template-columns: repeat(2, 1fr); 
+                gap: 20px; 
+            } 
+            .about .col-left, 
+            .about .col-right { 
+                flex: 0 0 100%; 
+                max-width: 100%; 
+                padding-left: 0; 
+                padding-right: 0; 
+            } 
+            .about .col-left { 
+                margin-bottom: 20px; 
+            } 
+            .about .content h3 { 
+                font-size: 36px; 
+            } 
+        } 
+        @media (max-width: 480px) { 
+            .clients-grid { 
+                grid-template-columns: 1fr; 
+            } 
+            .section-title h2 { 
+                font-size: 28px; 
+            } 
+        } 
+ 
+         body { 
+            font-family: 'Inter', sans-serif; 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+        } 
+        /* Custom styles for portfolio info overlay */
+        .portfolio-item .portfolio-info {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            top: 0;
+            background: rgba(40, 58, 90, 0.9); /* Dark overlay */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+        }
+
+        .portfolio-item:hover .portfolio-info {
+            opacity: 1;
+        }
+
+        .portfolio-info h4 {
+            margin-bottom: 0.5rem;
+        }
+
+        .portfolio-info p {
+            margin-bottom: 1rem;
+        }
+
+        .portfolio-info .link-icon {
+            display: inline-block;
+            margin: 0 0.5rem;
+            padding: 0.5rem;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            transition: background 0.3s ease;
+        }
+
+        .portfolio-info .link-icon:hover {
+            background: rgba(255, 255, 255, 0.4);
+        }
+
+        /* Modal specific styles */
+        #imageModal {
+            transition: opacity 0.3s ease-in-out;
+        }
+        #modalImage {
+            max-width: 100%;
+            max-height: 80vh; /* Limit height to prevent overflow on smaller screens */
+        }
+ 
+ 
+ 
+         
+    </style> 
+</head> 
+<!-- ======= Header ======= -->
+    <header id="header" class="fixed top-0 w-full z-50 bg-white py-4 px-6 transition-all duration-300">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="logo text-3xl font-bold text-gray-800">
+                <a href="index.html">COMPANY<span class="text-green-600">.</span></a>
+            </h1>
+
+            <!-- Desktop Navigation -->
+            <nav class="main-nav hidden md:flex items-center space-x-8">
+                <ul class="flex items-center space-x-8">
+                    <li><a href="index.html" class="text-gray-600 font-medium hover:text-green-600 transition-colors duration-200">HOME</a></li>
+                    <li class="dropdown relative group">
+                        <a href="about.html" class="text-gray-600 font-medium hover:text-green-600 transition-colors duration-200 flex items-center">
+                            ABOUT<i class="bx bx-chevron-down ml-1"></i>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="about-Team.html">Team</a></li>
+                            <li><a href="about-Testimonials.html">Testimonials</a></li>
+                            <li class="deep-dropdown relative group">
+                                <a href="#" class="flex items-center justify-between">
+                                    Deep Dropdown <i class="bx bx-chevron-right ml-1"></i>
+                                </a>
+                                <ul class="deep-dropdown-menu">
+                                    <li><a href="#">Deep Dropdown 1</a></li>
+                                    <li><a href="#">Deep Dropdown 2</a></li>
+                                    <li><a href="#">Deep Dropdown 3</a></li>
+                                    <li><a href="#">Deep Dropdown 4</a></li>
+                                    <li><a href="#">Deep Dropdown 5</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><a href="Services.html" class="text-gray-600 font-medium hover:text-green-600 transition-colors duration-200">SERVICES</a></li>
+                    <li><a href="Portfolio.html" class="text-gray-600 font-medium hover:text-green-600 transition-colors duration-200">PORTFOLIO</a></li>
+                    <li><a href="Pricing.html" class="text-gray-600 font-medium hover:text-green-600 transition-colors duration-200">PRICING</a></li>
+                    <li><a href="Blog.html" class="text-gray-600 font-medium hover:text-green-600 transition-colors duration-200">BLOG</a></li>
+                    <li><a href="Contact.html" class="text-gray-600 font-medium hover:text-green-600 transition-colors duration-200">CONTACT</a></li>
+                </ul>
+            </nav>
+
+            <!-- Social Links (Desktop) -->
+            <div class="hidden md:flex items-center space-x-4">
+                <a href="index.html" class="text-gray-500 hover:text-green-600 transition-colors duration-200"><i class='bx bxl-twitter text-xl'></i></a>
+                <a href="index.html" class="text-gray-500 hover:text-green-600 transition-colors duration-200"><i class='bx bxl-facebook text-xl'></i></a>
+                <a href="index.html" class="text-gray-500 hover:text-green-600 transition-colors duration-200"><i class='bx bxl-instagram text-xl'></i></a>
+                <a href="index.html" class="text-gray-500 hover:text-green-600 transition-colors duration-200"><i class='bx bxl-linkedin text-xl'></i></a>
+            </div>
+
+            <!-- Mobile Navigation Toggle -->
+            <i class="bx bx-menu mobile-nav-toggle md:hidden" id="mobile-nav-toggle"></i>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation Menu -->
+    <div class="mobile-nav-overlay" id="mobile-nav-overlay"></div>
+    <nav class="mobile-nav" id="mobile-nav">
+        <i class="bx bx-x text-3xl cursor-pointer absolute top-4 right-4 text-gray-700" id="mobile-nav-close"></i>
+        <ul class="mt-12">
+            <li><a href="index.html" class="text-green-600 font-semibold">HOME</a></li>
+                        <li><a href="about.html" class="text-green-600 font-semibold">ABOUT</a></li>
+
+            <li><a href="Services.html">SERVICES</a></li>
+            <li><a href="Portfolio.html">PORTFOLIO</a></li>
+            <li><a href="Pricing.html">PRICING</a></li>
+            <li><a href="Blog.html">BLOG</a></li>
+            <li><a href="Contact.html">CONTACT</a></li>
+        </ul>
+    </nav>
+
+    <div style="height: 100px;"></div> <!-- Spacer to push content down from fixed header -->
+     </div>
+    </header>
+ 
+       
+<!-- Hero Section -->
+    <section id="hero" class="hero section dark-background">
+
+        <div id="hero-carousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
+
+            <!-- Carousel Item 1 -->
+            <div class="carousel-item active">
+                <!-- Placeholder image for hero-carousel-1.png -->
+                <img src="hero-carousel-1.png" alt="Placeholder Image 1">
+                <div class="container">
+                    <h2>We are professional</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                    <a href="about.html" class="btn-get-started">Read More</a>
+                </div>
+            </div><!-- End Carousel Item -->
+
+            <!-- Carousel Item 2 -->
+            <div class="carousel-item">
+                <!-- Placeholder image for hero-carousel-2 (1).jpg -->
+                <img src="hero-carousel-2.jpg" alt="Placeholder Image 2">
+                <div class="container">
+                    <h2>At vero eos et accusamus</h2>
+                    <p>Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut.</p>
+                    <a href="about.html" class="btn-get-started">Read More</a>
+                </div>
+            </div><!-- End Carousel Item -->
+
+            <!-- Carousel Item 3 -->
+            <div class="carousel-item">
+                <!-- Placeholder image for hero-carousel-3 (1).jpg -->
+                <img src="hero-carousel-3.jpg" alt="Placeholder Image 3">
+                <div class="container">
+                    <h2>Temporibus autem quibusdam</h2>
+                    <p>Beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt omnis iste natus error sit voluptatem accusantium.</p>
+                    <a href="about.html" class="btn-get-started">Read More</a>
+                </div>
+            </div><!-- End Carousel Item -->
+
+            <!-- Carousel Controls -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#hero-carousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#hero-carousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon bi bi-chevron-right" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+
+            <!-- Carousel Indicators -->
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#hero-carousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#hero-carousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#hero-carousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>
+
+        </div>
+
+    </section><!-- /Hero Section -->
+ 
+            <!-- ======= About Section ======= --> 
+    <section id="about" class="about"> 
+        <div class="container mx-auto"> 
+            <div class="row"> 
+                <!-- Left Column with content, now with data-aos --> 
+                <div class="col-left content" data-aos="zoom-in"> 
+                    <h3 class="text-4xl font-bold text-gray-800 mb-4">Consequatur eius et magnam</h3> 
+                    <p class="text-gray-500 text-sm mb-2">EST 1988</p> 
+                    <h4 class="text-xl font-semibold text-gray-700 mb-3">Our Story</h4> 
+                    <p class="text-gray-600 mb-4"> 
+                        Inventore aliquam beatae at et id alias. Ipsa dolores amet consequuntur minima quia maxime autem. 
+                        Quidem id sed ratione. Tenetur provident autem in reiciendis rerum at dolor. 
+                        Aliquam consectetur laudantium temporibus dicta minus dolor. 
+                    </p> 
+                    <ul class="list-none p-0"> 
+                        <li class="flex items-start mb-2"> 
+                            <i class="fas fa-check-double text-green-600 text-lg mr-3 mt-1"></i> 
+                            <span class="text-gray-700">Ullamco laboris nisi ut aliquip ex ea commo</span> 
+                        </li> 
+                        <li class="flex items-start"> 
+                            <i class="fas fa-check-double text-green-600 text-lg mr-3 mt-1"></i> 
+                            <span class="text-gray-700">Duis aute irure dolor in reprehenderit in</span> 
+                        </li> 
+                    </ul> 
+                </div> 
+                <!-- Right Column with image, now with data-aos --> 
+                <div  class="col-right" data-aos="zoom-in"> 
+                    <img 
+                        src="about.png" 
+                        alt="About Us Business Meeting Image" 
+                        class="w-full h-auto rounded-lg shadow-md" 
+                        onerror="this.onerror=null;this.src='https: //placehold.co/600x400/cccccc/333333?text=Image+Not+Found';" 
+                    > 
+                </div> 
+            </div> 
+        </div> 
+    </section> 
+ 
+ 
+        <!-- ======= Services Section ======= -->
+    <section id="services" class="services py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                <!-- Card 1 -->
+                <div class="col" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card h-full feature-card text-center bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-2">
+                        <div class="card-body">
+                            <div class="icon-wrapper mx-auto mb-6 w-24 h-24 flex items-center justify-center rounded-full bg-green-100">
+                                <i class="bi bi-activity text-4xl icon-color-green"></i>
+                            </div>
+                            <h5 class="card-title text-xl font-bold text-gray-800 mb-3">Nesciunt Mete</h5>
+                            <p class="card-text text-gray-600">Provident nihil minus quo consequatur non omnis maiores. Eos accusantium minus dolores iure perferendis tempore et consequatur.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="col" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card h-full feature-card text-center bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-2">
+                        <div class="card-body">
+                            <div class="icon-wrapper mx-auto mb-6 w-24 h-24 flex items-center justify-center rounded-full bg-orange-100">
+                                <i class="bi bi-wifi text-4xl icon-color-orange"></i>
+                            </div>
+                            <h5 class="card-title text-xl font-bold text-gray-800 mb-3">Eosle Commodi</h5>
+                            <p class="card-text text-gray-600">Ut autem aut autem non a. Sint sint sit facilis nam iusto sint. Libero corrupti neque eum hic non ut nesciunt dolorem.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="col" data-aos="fade-up" data-aos-delay="300">
+                    <div class="card h-full feature-card text-center bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-2">
+                        <div class="card-body">
+                            <div class="icon-wrapper mx-auto mb-6 w-24 h-24 flex items-center justify-center rounded-full bg-green-100">
+                                <i class="bi bi-easel text-4xl icon-color-green"></i>
+                            </div>
+                            <h5 class="card-title text-xl font-bold text-gray-800 mb-3">Ledo Markt</h5>
+                            <p class="card-text text-gray-600">Ut excepturi voluptatem nisi sed. Quidem fuga consequatur. Minus ea aut. Vel qui id voluptas adipisci eos earum corrupti.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="col" data-aos="fade-up" data-aos-delay="400">
+                    <div class="card h-full feature-card text-center bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-2">
+                        <div class="card-body">
+                            <div class="icon-wrapper mx-auto mb-6 w-24 h-24 flex items-center justify-center rounded-full bg-red-100">
+                                <i class="bi bi-bounding-box text-4xl icon-color-red"></i>
+                            </div>
+                            <h5 class="card-title text-xl font-bold text-gray-800 mb-3">Asperiores Commodit</h5>
+                            <p class="card-text text-gray-600">Non et temporibus minus omnis sed dolor esse consequatur. Cupiditate sed error ea fuga sit provident adipisci neque.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="col" data-aos="fade-up" data-aos-delay="500">
+                    <div class="card h-full feature-card text-center bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-2">
+                        <div class="card-body">
+                            <div class="icon-wrapper mx-auto mb-6 w-24 h-24 flex items-center justify-center rounded-full bg-purple-100">
+                                <i class="bi bi-calendar-event text-4xl icon-color-purple"></i>
+                            </div>
+                            <h5 class="card-title text-xl font-bold text-gray-800 mb-3">Velit Doloremque</h5>
+                            <p class="card-text text-gray-600">Cumque et suscipit saepe. Est maiores autem enim facilis ut aut ipsam corporis aut. Sed animi at autem alias eius labore.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 6 -->
+                <div class="col" data-aos="fade-up" data-aos-delay="600">
+                    <div class="card h-full feature-card text-center bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-2">
+                        <div class="card-body">
+                            <div class="icon-wrapper mx-auto mb-6 w-24 h-24 flex items-center justify-center rounded-full bg-pink-100">
+                                <i class="bi bi-chat-dots text-4xl icon-color-pink"></i>
+                            </div>
+                            <h5 class="card-title text-xl font-bold text-gray-800 mb-3">Dolori Architecto</h5>
+                            <p class="card-text text-gray-600">Hic molestias ea quibusdam eos. Fugiat enim doloremque aut neque non et debitis iure. Corrupti recusandae ducimus enim.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+ 
+ 
+          <!-- ======= Portfolio Section ======= -->
+    <section id="portfolio" class="portfolio py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="section-title text-center mb-12" data-aos="fade-up">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">Portfolio</h2>
+                <p class="text-gray-600 max-w-3xl mx-auto">Provident nihil minus quo consequatur non omnis maiores. Eos accusantium minus dolores iure perferendis tempore et consequatur.</p>
+            </div>
+
+            <div class="flex justify-center mb-8" data-aos="fade-up" data-aos-delay="100">
+                <ul id="portfolio-filters" class="flex flex-wrap justify-center space-x-2 sm:space-x-4 text-sm font-semibold">
+                    <li><button data-filter="*" class="filter-active px-6 py-2 rounded-full border border-green-600 bg-green-600 text-white hover:bg-green-700 transition-colors duration-200 mb-2">All</button></li>
+                    <li><button data-filter=".filter-app" class="px-6 py-2 rounded-full border border-gray-300 text-gray-700 hover:bg-green-500 hover:text-white transition-colors duration-200 mb-2">App</button></li>
+                    <li><button data-filter=".filter-card" class="px-6 py-2 rounded-full border border-gray-300 text-gray-700 hover:bg-green-500 hover:text-white transition-colors duration-200 mb-2">Card</button></li>
+                    <li><button data-filter=".filter-web" class="px-6 py-2 rounded-full border border-gray-300 text-gray-700 hover:bg-green-500 hover:text-white transition-colors duration-200 mb-2">Web</button></li>
+                </ul>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8" id="portfolio-container">
+                <div class="portfolio-item filter-app relative overflow-hidden rounded-lg shadow-md" data-aos="fade-up" data-aos-delay="200">
+                    <img src="masonry-portfolio-1.jpg" class="img-fluid w-full h-auto object-cover" alt="App 1" onerror="this.onerror=null;this.src='https://placehold.co/600x400/D4E6F1/000000?text=App+1';">
+                    <div class="portfolio-info">
+                        <h4 class="text-2xl font-bold mb-1">App 1</h4>
+                        <p class="text-lg">App</p>
+                        <!-- Link to trigger modal for App 1 -->
+                        <a href="masonry-portfolio-1.jpg" class="link-icon" data-image-src="https://placehold.co/600x400/D4E6F1/000000?text=App+1">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-maximize inline-block h-6 w-6 text-white"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="portfolio-item filter-card relative overflow-hidden rounded-lg shadow-md" data-aos="fade-up" data-aos-delay="300">
+                    <img src="masonry-portfolio-2.jpg" class="img-fluid w-full h-auto object-cover" alt="Card 1" onerror="this.onerror=null;this.src='https://placehold.co/600x400/C1E1C1/000000?text=Card+1';">
+                    <div class="portfolio-info">
+                        <h4 class="text-2xl font-bold mb-1">Card 1</h4>
+                        <p class="text-lg">Card</p>
+                        <!-- Link to trigger modal for Card 1 -->
+                        <a href="masonry-portfolio-2.jpg" class="link-icon" data-image-src="https://placehold.co/600x400/C1E1C1/000000?text=Card+1">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-maximize inline-block h-6 w-6 text-white"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="portfolio-item filter-web relative overflow-hidden rounded-lg shadow-md" data-aos="fade-up" data-aos-delay="400">
+                    <img src="masonry-portfolio-3.jpg" class="img-fluid w-full h-auto object-cover" alt="Web 1" onerror="this.onerror=null;this.src='https://placehold.co/600x400/AD9E53/000000?text=Web+1';">
+                    <div class="portfolio-info">
+                        <h4 class="text-2xl font-bold mb-1">Web 1</h4>
+                        <p class="text-lg">Web</p>
+                        <!-- Link to trigger modal for Web 1 -->
+                        <a href="masonry-portfolio-3.jpg" class="link-icon" data-image-src="https://placehold.co/600x400/AD9E53/000000?text=Web+1">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-maximize inline-block h-6 w-6 text-white"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="portfolio-item filter-web relative overflow-hidden rounded-lg shadow-md" data-aos="fade-up" data-aos-delay="200">
+                    <img src="masonry-portfolio-4.jpg" class="img-fluid w-full h-auto object-cover" alt="Web 2" onerror="this.onerror=null;this.src='https://placehold.co/600x400/90B880/000000?text=Web+2';">
+                    <div class="portfolio-info">
+                        <h4 class="text-2xl font-bold mb-1">Web 2</h4>
+                        <p class="text-lg">Web</p>
+                        <!-- Link to trigger modal for Web 2 -->
+                        <a href="masonry-portfolio-4.jpg" class="link-icon" data-image-src="https://placehold.co/600x400/90B880/000000?text=Web+2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-maximize inline-block h-6 w-6 text-white"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="portfolio-item filter-card relative overflow-hidden rounded-lg shadow-md" data-aos="fade-up" data-aos-delay="300">
+                    <img src="masonry-portfolio-5.jpg" class="img-fluid w-full h-auto object-cover" alt="Card 2" onerror="this.onerror=null;this.src='https://placehold.co/600x400/E59866/000000?text=Card+2';">
+                    <div class="portfolio-info">
+                        <h4 class="text-2xl font-bold mb-1">Card 2</h4>
+                        <p class="text-lg">Card</p>
+                        <!-- Link to trigger modal for Card 2 -->
+                        <a href="masonry-portfolio-5.jpg" class="link-icon" data-image-src="https://placehold.co/600x400/E59866/000000?text=Card+2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-maximize inline-block h-6 w-6 text-white"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="portfolio-item filter-app relative overflow-hidden rounded-lg shadow-md" data-aos="fade-up" data-aos-delay="400">
+                    <img src="masonry-portfolio-6.jpg" class="img-fluid w-full h-auto object-cover" alt="App 2" onerror="this.onerror=null;this.src='https://placehold.co/600x400/8B8C89/000000?text=App+2';">
+                    <div class="portfolio-info">
+                        <h4 class="text-2xl font-bold mb-1">App 2</h4>
+                        <p class="text-lg">App</p>
+                        <!-- Link to trigger modal for App 2 -->
+                        <a href="masonry-portfolio-6.jpg" class="link-icon" data-image-src="https://placehold.co/600x400/8B8C89/000000?text=App+2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-maximize inline-block h-6 w-6 text-white"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="portfolio-item filter-web relative overflow-hidden rounded-lg shadow-md" data-aos="fade-up" data-aos-delay="200">
+                    <img src="masonry-portfolio-7.jpg" class="img-fluid w-full h-auto object-cover" alt="Web 3" onerror="this.onerror=null;this.src='https://placehold.co/600x400/C1E1C1/000000?text=Web+3';">
+                    <div class="portfolio-info">
+                        <h4 class="text-2xl font-bold mb-1">Web 3</h4>
+                        <p class="text-lg">Web</p>
+                        <!-- Link to trigger modal for Web 3 -->
+                        <a href="masonry-portfolio-7.jpg" class="link-icon" data-image-src="https://placehold.co/600x400/C1E1C1/000000?text=Web+3">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-maximize inline-block h-6 w-6 text-white"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="portfolio-item filter-card relative overflow-hidden rounded-lg shadow-md" data-aos="fade-up" data-aos-delay="300">
+                    <img src="masonry-portfolio-8.jpg" class="img-fluid w-full h-auto object-cover" alt="Card 3" onerror="this.onerror=null;this.src='https://placehold.co/600x400/A7D9D3/000000?text=Card+3';">
+                    <div class="portfolio-info">
+                        <h4 class="text-2xl font-bold mb-1">Card 3</h4>
+                        <p class="text-lg">Card</p>
+                        <!-- Link to trigger modal for Card 3 -->
+                        <a href="masonry-portfolio-8.jpg" class="link-icon" data-image-src="https://placehold.co/600x400/A7D9D3/000000?text=Card+3">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-maximize inline-block h-6 w-6 text-white"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="portfolio-item filter-app relative overflow-hidden rounded-lg shadow-md" data-aos="fade-up" data-aos-delay="400">
+                    <img src="masonry-portfolio-9.jpg" class="img-fluid w-full h-auto object-cover" alt="App 3" onerror="this.onerror=null;this.src='https://placehold.co/600x400/7F8C8D/000000?text=App+3';">
+                    <div class="portfolio-info">
+                        <h4 class="text-2xl font-bold mb-1">App 3</h4>
+                        <p class="text-lg">App</p>
+                        <!-- Link to trigger modal for App 3 -->
+                        <a href="masonry-portfolio-9.jpg" class="link-icon" data-image-src="https://placehold.co/600x400/7F8C8D/000000?text=App+3">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-maximize inline-block h-6 w-6 text-white"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Image Modal/Lightbox -->
+    <div id="imageModal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 hidden">
+        <!-- Main modal content container -->
+        <div class="relative w-full max-w-4xl mx-4 my-8 rounded-lg overflow-hidden flex flex-col bg-gray-900">
+            <!-- Close Button -->
+            <button id="closeModal" class="absolute top-4 right-4 text-white text-3xl z-10 p-2 rounded-full bg-gray-800 bg-opacity-50 hover:bg-opacity-75 focus:outline-none">&times;</button>
+
+            <!-- Image Container with 16:9 Aspect Ratio -->
+            <div class="relative w-full overflow-hidden" style="padding-top: 56.25%;"> <!-- (9 / 16) * 100% = 56.25% for 16:9 aspect ratio -->
+                <img id="modalImage" src="" alt="Full size image" class="absolute inset-0 w-full h-full object-contain rounded-lg shadow-xl">
+            </div>
+
+            <!-- Previous Button -->
+            <div class="absolute inset-y-0 left-0 flex items-center">
+                <button id="prevImage" class="bg-gray-800 bg-opacity-50 hover:bg-opacity-75 text-white p-3 rounded-r-lg text-2xl focus:outline-none">&#10094;</button>
+            </div>
+            <!-- Next Button -->
+            <div class="absolute inset-y-0 right-0 flex items-center">
+                <button id="nextImage" class="bg-gray-800 bg-opacity-50 hover:bg-opacity-75 text-white p-3 rounded-l-lg text-2xl focus:outline-none">&#10095;</button>
+            </div>
+        </div>
+    </div>
+ 
+<!-- Client section --> 
+ 
+ 
+        <section class="clients-section"> 
+        <div class="section-title text-center mb-12" data-aos="fade-up"> 
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">Clients</h2> 
+                <p class="text-gray-600 max-w-3xl mx-auto">Necessitatibus eius consequatur ex 
+aliquid fuga eum quidem sint consectetur velit.</p> 
+            </div> 
+        <div class="clients-grid"> 
+                <div class="client-item" data-aos="fade-up" data-aos-delay="100"> 
+                <img src="client-1.png" alt="Client 1 Logo" height="50px" width="120px"> 
+                <span class="client-name"></span> 
+            </div> 
+                <div class="client-item" data-aos="fade-up" data-aos-delay="100"> 
+                <img src="client-2.png" alt="Client 2 Logo" height="50px" width="120px"> 
+                <span class="client-name"></span> 
+            </div> 
+                <div class="client-item" data-aos="fade-up" data-aos-delay="100"> 
+                <img src="client-3.png" alt="Client 3 Logo" height="50px" width="120px"> 
+                <span class="client-name"></span> 
+            </div> 
+                <div class="client-item" data-aos="fade-up" data-aos-delay="100"> 
+                <img src="client-4.png" alt="Client 4 Logo" height="50px" width="120px"> 
+                <span class="client-name"></span> 
+            </div> 
+                <div class="client-item" data-aos="fade-up" data-aos-delay="100"> 
+                <img src="client-5.png" alt="Client 5 Logo" height="50px" width="120px"> 
+                <span class="client-name"></span> 
+            </div> 
+                <div class="client-item" data-aos="fade-up" data-aos-delay="100"> 
+                <img src="client-6.png" alt="Client 6 Logo" height="50px" width="120px"> 
+                <span class="client-name"></span> 
+            </div> 
+                <div class="client-item" data-aos="fade-up" data-aos-delay="100"> 
+                <img src="client-7.png" alt="Client 7 Logo" height="50px" width="120px"> 
+                <span class="client-name"></span> 
+            </div> 
+                <div class="client-item" data-aos="fade-up" data-aos-delay="100"> 
+                <img src="client-8.png" alt="Client 8 Logo" height="50px" width="120px"> 
+                <span class="client-name"></span> 
+            </div> 
+        </div> 
+    </section> 
+ 
+    <!-- ======= Footer ======= --> 
+    <footer id="footer" class="bg-gray-800 text-gray-300 py-12"> 
+        <div class="footer-top container mx-auto px-4"> 
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"> 
+                <div class="col col-contact"> 
+                    <div class="footer-contact"> 
+                        <h3 class="text-2xl font-bold text-white mb-4">Company</h3> 
+                        <p class="text-gray-400"> 
+                            A108 Adam Street <br> 
+                            New York, NY 535022<br> 
+                            United States <br><br> 
+                            <strong>Phone:</strong> +1 5589 55488 55<br> 
+                            <strong>Email:</strong> info@example.com<br> 
+                        </p> 
+                    </div> 
+                </div> 
+                <div class="col col-links"> 
+                    <h4 class="text-xl font-bold text-white mb-4">Useful Links</h4> 
+                    <ul class="list-none p-0 space-y-2"> 
+                        <li><i class='bx bx-chevron-right text-green-500 mr-2'></i> <a 
+href="index.html" class="hover:text-green-400 transition-colors">Home</a></li> 
+                        <li><i class='bx bx-chevron-right text-green-500 mr-2'></i> <a 
+href="about.html" class="hover:text-green-400 transition-colors">About us</a></li> 
+                        <li><i class='bx bx-chevron-right text-green-500 mr-2'></i> <a 
+href="Services.html" class="hover:text-green-400 transition-colors">Services</a></li> 
+                        <li><i class='bx bx-chevron-right text-green-500 mr-2'></i> <a 
+href="index.html" class="hover:text-green-400 transition-colors">Terms of service</a></li> 
+                        <li><i class='bx bx-chevron-right text-green-500 mr-2'></i> <a 
+href="index.html" class="hover:text-green-400 transition-colors">Privacy policy</a></li> 
+                    </ul> 
+                </div> 
+                <div class="col col-links"> 
+                    <h4 class="text-xl font-bold text-white mb-4">Our Services</h4> 
+                    <ul class="list-none p-0 space-y-2"> 
+                        <li><i class='bx bx-chevron-right text-green-500 mr-2'></i> <a 
+href="Services.html" class="hover:text-green-400 transition-colors">Web Design</a></li> 
+                        <li><i class='bx bx-chevron-right text-green-500 mr-2'></i> <a 
+href="Services.html" class="hover:text-green-400 transition-colors">Web 
+Development</a></li> 
+                        <li><i class='bx bx-chevron-right text-green-500 mr-2'></i> <a 
+href="Services.html" class="hover:text-green-400 transition-colors">Product 
+Management</a></li> 
+                        <li><i class='bx bx-chevron-right text-green-500 mr-2'></i> <a 
+href="Services.html" class="hover:text-green-400 transition-colors">Marketing</a></li> 
+                        <li><i class='bx bx-chevron-right text-green-500 mr-2'></i> <a 
+href="Services.html" class="hover:text-green-400 transition-colors">Graphic Design</a></li> 
+                    </ul> 
+                </div> 
+                <div class="col col-newsletter"> 
+                    <h4 class="text-xl font-bold text-white mb-4">Join Our Newsletter</h4> 
+                    <p class="text-gray-400 mb-4">Tamen quem nulla quae legam multos aute sint 
+culpa legam noster magna</p> 
+                    <form action="" method="post" class="newsletter-form flex"> 
+                        <input type="email" name="email" class="flex-grow px-4 py-2 rounded-l-md 
+border border-gray-600 focus:outline-none focus:ring-2 focus:ring-green-500 bg-gray-700 
+text-white" placeholder="Your Email"> 
+                        <input type="submit" value="Subscribe" class="bg-green-600 hover:bg-green
+700 text-white font-semibold px-4 py-2 rounded-r-md cursor-pointer transition-colors"> 
+                    </form> 
+                </div> 
+            </div> 
+        </div> 
+ 
+        <div class="container mx-auto px-4 mt-8 pt-8 border-t border-gray-700"> 
+            <div class="copyright-wrap flex flex-col md:flex-row justify-between items-center text
+center md:text-left"> 
+                <div class="copyright mb-4 md:mb-0 text-gray-400"> 
+                    &copy; Copyright <strong><span class="text-white">Company</span></strong>. 
+All Rights Reserved 
+                </div> 
+                <div class="credits text-gray-400 mb-4 md:mb-0"> 
+                    Designed by <a href="#" class="text-green-400 hover:underline">Madhavan</a> 
+                </div> 
+                <div class="social-links flex space-x-4"> 
+                    <a href="index.html" class="text-gray-400 hover:text-green-600 transition-colors 
+duration-200"><i class='bx bxl-twitter text-xl'></i></a> 
+                    <a href="index.html" class="text-gray-400 hover:text-green-600 transition-colors 
+duration-200"><i class='bx bxl-facebook text-xl'></i></a> 
+                    <a href="index.html" class="text-gray-400 hover:text-green-600 transition-colors 
+duration-200"><i class='bx bxl-instagram text-xl'></i></a> 
+                    <a href="index.html" class="text-gray-400 hover:text-green-600 transition-colors 
+duration-200"><i class='bx bxl-linkedin text-xl'></i></a> 
+                </div> 
+            </div> 
+        </div> 
+    </footer> 
+ 
+    <!-- Back to Top Button --> 
+    <a href="index.html" id="back-to-top" class="back-to-top fixed bottom-8 right-8 bg-green
+600 text-white p-3 rounded-full shadow-lg hover:bg-green-700 transition-opacity duration
+300 opacity-0 invisible z-40"> 
+        <i class='bx bx-up-arrow-alt text-2xl'></i> 
+    </a> 
+ 
+        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script> 
+         <!-- AOS Library JS --> 
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script> 
+ 
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script> 
+ 
+ 
+    <script> 
+
+     document.addEventListener('DOMContentLoaded', () => {
+            const mobileNavToggle = document.getElementById('mobile-nav-toggle');
+            const mobileNavClose = document.getElementById('mobile-nav-close');
+            const mobileNav = document.getElementById('mobile-nav');
+            const mobileNavOverlay = document.getElementById('mobile-nav-overlay');
+            const header = document.getElementById('header');
+
+            // Toggle mobile navigation
+            function toggleMobileNav() {
+                mobileNav.classList.toggle('open');
+                mobileNavOverlay.style.display = mobileNav.classList.contains('open') ? 'block' : 'none';
+                document.body.classList.toggle('overflow-hidden', mobileNav.classList.contains('open'));
+            }
+
+            mobileNavToggle.addEventListener('click', toggleMobileNav);
+            mobileNavClose.addEventListener('click', toggleMobileNav);
+            mobileNavOverlay.addEventListener('click', toggleMobileNav); // Close when clicking overlay
+
+            // Mobile dropdowns
+            const mobileDropdownToggles = mobileNav.querySelectorAll('.dropdown-toggle');
+            mobileDropdownToggles.forEach(toggle => {
+                toggle.addEventListener('click', (event) => {
+                    event.preventDefault(); // Prevent navigation on click
+                    const parentLi = toggle.closest('li');
+                    const dropdownMenu = parentLi.querySelector(':scope > .dropdown-menu, :scope > .deep-dropdown-menu');
+
+                    if (dropdownMenu) {
+                        dropdownMenu.classList.toggle('hidden');
+                        const chevron = toggle.querySelector('.bx');
+                        if (chevron) {
+                            if (dropdownMenu.classList.contains('hidden')) {
+                                // Restore original chevron based on whether it's a deep dropdown or not
+                                if (parentLi.classList.contains('deep-dropdown')) {
+                                    chevron.classList.remove('bx-chevron-down');
+                                    chevron.classList.add('bx-chevron-right');
+                                } else {
+                                    chevron.classList.remove('bx-chevron-up');
+                                    chevron.classList.add('bx-chevron-down');
+                                }
+                            } else {
+                                // Change chevron for open dropdown
+                                if (parentLi.classList.contains('deep-dropdown')) {
+                                    chevron.classList.remove('bx-chevron-right');
+                                    chevron.classList.add('bx-chevron-down'); // Or 'bx-chevron-up' if you prefer
+                                } else {
+                                    chevron.classList.remove('bx-chevron-down');
+                                    chevron.classList.add('bx-chevron-up');
+                                }
+                            }
+                        }
+                    }
+                });
+            });
+
+            // Header shadow on scroll
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 0) {
+                    header.classList.add('shadow-md'); /* Tailwind shadow-md */
+                } else {
+                    header.classList.remove('shadow-md');
+                }
+            });
+        });
+ 
+ 
+ 
+           AOS.init({ 
+            duration: 800, // values from 0 to 3000, with step 50ms 
+            easing: 'ease-in-out', // default easing for AOS animations 
+            once: true // whether animation should happen only once - while scrolling down 
+        }); 
+ 
+        // Global variables for image data and current index 
+        let portfolioImages = []; 
+        let currentImageIndex = 0; 
+ 
+        // Get modal elements 
+        const imageModal = document.getElementById('imageModal'); 
+        const modalImage = document.getElementById('modalImage'); 
+        const closeModalBtn = document.getElementById('closeModal'); 
+        const prevImageBtn = document.getElementById('prevImage'); 
+        const nextImageBtn = document.getElementById('nextImage'); 
+        const portfolioContainer = document.getElementById('portfolio-container'); 
+ 
+        // Function to open the modal 
+        function openModal(imageSrc, index) { 
+            modalImage.src = imageSrc; 
+            currentImageIndex = index; 
+            imageModal.classList.remove('hidden'); 
+            document.body.style.overflow = 'hidden'; // Prevent scrolling background 
+        } 
+ 
+        // Function to close the modal 
+        function closeModal() { 
+            imageModal.classList.add('hidden'); 
+            document.body.style.overflow = ''; // Restore scrolling 
+        } 
+ 
+        // Function to navigate to the next image 
+        function showNextImage() { 
+            currentImageIndex = (currentImageIndex + 1) % portfolioImages.length; 
+            modalImage.src = portfolioImages[currentImageIndex]; 
+        } 
+ 
+        // Function to navigate to the previous image 
+        function showPrevImage() { 
+            currentImageIndex = (currentImageIndex - 1 + portfolioImages.length) % 
+portfolioImages.length; 
+            modalImage.src = portfolioImages[currentImageIndex]; 
+        } 
+ 
+        // Event Listeners for modal 
+        closeModalBtn.addEventListener('click', closeModal); 
+        nextImageBtn.addEventListener('click', showNextImage); 
+        prevImageBtn.addEventListener('click', showPrevImage); 
+ 
+        // Close modal when clicking outside the image content 
+        imageModal.addEventListener('click', (event) => { 
+            if (event.target === imageModal) { 
+                closeModal(); 
+            } 
+        }); 
+ 
+        // Close modal with Escape key 
+        document.addEventListener('keydown', (event) => { 
+            if (event.key === 'Escape' && !imageModal.classList.contains('hidden')) { 
+                closeModal(); 
+            } 
+        }); 
+ 
+        document.addEventListener('DOMContentLoaded', () => { 
+            // Populate portfolioImages array from all images in the portfolio container 
+            // This ensures we have a list of all current image sources for navigation 
+            document.querySelectorAll('.portfolio-item img').forEach(img => { 
+                portfolioImages.push(img.src); 
+            }); 
+ 
+            // Event listener for opening modal from portfolio item links 
+            portfolioContainer.addEventListener('click', (event) => { 
+                const linkIcon = event.target.closest('.link-icon'); 
+                if (linkIcon) { 
+                    event.preventDefault(); // Prevent default link behavior (e.g., navigating to a new page) 
+ 
+                    // Get the parent portfolio-item of the clicked link icon 
+                    const portfolioItem = linkIcon.closest('.portfolio-item'); 
+                    if (!portfolioItem) return; // Safety check 
+ 
+                    // Get the actual src of the image within this portfolio item 
+                    const imageElement = portfolioItem.querySelector('img'); 
+                    const imageSrc = imageElement ? imageElement.src : null; 
+ 
+                    // Find the index of this image in our collected array 
+                    const index = portfolioImages.indexOf(imageSrc); 
+ 
+                    if (imageSrc && index !== -1) { 
+                        openModal(imageSrc, index); 
+                    } else { 
+                        console.error('Could not find image source or index for modal:', imageSrc, 
+index); 
+                    } 
+                } 
+            }); 
+ 
+            // Simple Isotope-like filtering for demonstration 
+            const filterButtons = document.querySelectorAll('#portfolio-filters button'); 
+            const portfolioItems = document.querySelectorAll('.portfolio-item'); 
+ 
+            filterButtons.forEach(button => { 
+                button.addEventListener('click', () => { 
+                    // Remove active class from all buttons 
+                    filterButtons.forEach(btn => btn.classList.remove('filter-active', 'bg-green-600', 
+'text-white')); 
+                    filterButtons.forEach(btn => btn.classList.add('border-gray-300', 'text-gray-700', 
+'hover:bg-green-500', 'hover:text-white')); 
+ 
+                    // Add active class to clicked button 
+                    button.classList.add('filter-active', 'bg-green-600', 'text-white'); 
+                    button.classList.remove('border-gray-300', 'text-gray-700', 'hover:bg-green-500', 
+'hover:text-white'); 
+ 
+                    const filterValue = button.getAttribute('data-filter'); 
+ 
+                    portfolioItems.forEach(item => { 
+                        if (filterValue === '*' || item.classList.contains(filterValue.substring(1))) { 
+                            item.style.display = 'block'; // Show item 
+                        } else { 
+                            item.style.display = 'none'; // Hide item 
+                        } 
+                    }); 
+ 
+                    AOS.refresh(); // Refresh AOS to account for display changes 
+                }); 
+            }); 
+        }); 
+ 
+ 
+ 
+         // Initialize AOS 
+        document.addEventListener('DOMContentLoaded', function() { 
+            AOS.init({ 
+                duration: 1000, // Duration of animation in ms 
+                easing: 'ease-in-out', // Easing type 
+                once: true, // Whether animation should only happen once - while scrolling down 
+            }); 
+        }); 
+ 
+          // Initialize AOS 
+        AOS.init({ 
+            duration: 1000, // Duration of animation in ms 
+            once: true,     // Whether animation should happen only once - while scrolling down 
+        }); 
+ 
+        document.addEventListener('DOMContentLoaded', () => { 
+            const header = document.getElementById('header'); 
+            const backToTopButton = document.getElementById('back-to-top'); 
+            const mobileNavToggle = document.getElementById('mobile-nav-toggle'); 
+            const mobileNav = document.getElementById('mobile-nav'); 
+            const mobileNavClose = document.getElementById('mobile-nav-close'); 
+            const mobileNavOverlay = document.getElementById('mobile-nav-overlay'); 
+            const portfolioFilters = document.getElementById('portfolio-filters'); 
+            const portfolioItems = document.querySelectorAll('.portfolio-item'); 
+ 
+            // --- Sticky Header --- 
+            const toggleStickyHeader = () => { 
+                if (window.scrollY > 100) { 
+                    header.classList.add('sticky'); 
+                } else { 
+                    header.classList.remove('sticky'); 
+                } 
+            }; 
+            window.addEventListener('scroll', toggleStickyHeader); 
+            toggleStickyHeader(); // Call on load in case page is already scrolled 
+ 
+            // --- Back to Top Button --- 
+            const toggleBackToTop = () => { 
+                if (window.scrollY > 300) { 
+                    backToTopButton.classList.remove('opacity-0', 'invisible'); 
+                    backToTopButton.classList.add('opacity-100', 'visible'); 
+                } else { 
+                    backToTopButton.classList.remove('opacity-100', 'visible'); 
+                    backToTopButton.classList.add('opacity-0', 'invisible'); 
+                } 
+            }; 
+            window.addEventListener('scroll', toggleBackToTop); 
+            toggleBackToTop(); // Call on load 
+             
+            backToTopButton.addEventListener('click', (e) => { 
+                e.preventDefault(); 
+                window.scrollTo({ 
+                    top: 0, 
+                    behavior: 'smooth' 
+                }); 
+            }); 
+ 
+            // --- Mobile Navigation Toggle --- 
+            mobileNavToggle.addEventListener('click', () => { 
+                document.body.classList.add('mobile-nav-active'); 
+            }); 
+ 
+            mobileNavClose.addEventListener('click', () => { 
+                document.body.classList.remove('mobile-nav-active'); 
+            }); 
+ 
+            mobileNavOverlay.addEventListener('click', () => { 
+                document.body.classList.remove('mobile-nav-active'); 
+            }); 
+ 
+            // Handle mobile dropdowns (toggle on click) 
+            const mobileDropdownToggles = mobileNav.querySelectorAll('.dropdown > a, .deepdropdown > a'); 
+            mobileDropdownToggles.forEach(toggle => { 
+                toggle.addEventListener('click', (e) => { 
+                    // Prevent default link navigation if it's a dropdown toggle 
+                    // Check if it's a link to a page (e.g., about.html) or just a dropdown trigger 
+                    if (toggle.getAttribute('href') === "#" || toggle.querySelector('.bx-chevron-down') 
+|| toggle.querySelector('.bx-chevron-right')) { 
+                         e.preventDefault(); 
+                    } 
+                    
+                    const parentLi = toggle.parentElement; 
+                    const dropdownMenu = toggle.nextElementSibling; 
+                     
+                    if (dropdownMenu && dropdownMenu.classList.contains('dropdown-menu') || 
+dropdownMenu.classList.contains('deep-dropdown-menu')) { 
+                        // Toggle 'hidden' class for menu visibility 
+                        dropdownMenu.classList.toggle('hidden'); 
+                        // Toggle 'dropdown-active' class on parent <li> for arrow rotation 
+                        parentLi.classList.toggle('dropdown-active'); 
+                    } 
+                }); 
+            }); 
+ 
+ 
+            // --- Portfolio Filtering --- 
+            if (portfolioFilters) { 
+                portfolioFilters.addEventListener('click', (e) => { 
+                    if (e.target.tagName === 'BUTTON') { 
+                        // Remove active class from all filters 
+                        portfolioFilters.querySelectorAll('button').forEach(btn => { 
+                            btn.classList.remove('filter-active', 'bg-green-600', 'text-white', 'bordergreen-600'); 
+                            btn.classList.add('bg-white', 'text-gray-700', 'border-gray-300'); 
+                        }); 
+ 
+                        // Add active class to clicked filter 
+                        e.target.classList.add('filter-active', 'bg-green-600', 'text-white', 'border-green600'); 
+                        e.target.classList.remove('bg-white', 'text-gray-700', 'border-gray-300'); 
+ 
+                        const filterValue = e.target.getAttribute('data-filter'); 
+ 
+                        portfolioItems.forEach(item => { 
+                            if (filterValue === '*' || item.classList.contains(filterValue.substring(1))) { 
+                                item.classList.remove('hidden'); 
+                            } else { 
+                                item.classList.add('hidden'); 
+                            } 
+                        }); 
+                    } 
+                }); 
+            } 
+        }); 
+ 
+ 
+          </script> 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" xintegrity="sha384YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script> 
+ 
+</body> 
+</html>

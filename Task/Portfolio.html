@@ -1,0 +1,1072 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Company Portfolio</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome CDN for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- AOS CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+      <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Bootstrap Icons CDN (for bi-activity, bi-wifi, etc.) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- AOS Library CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+     <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Boxicons for icons -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+        
+
+                /* Base styles for the mobile nav */
+        .mobile-nav-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 998;
+            display: none; /* Hidden by default */
+        }
+
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            right: -300px; /* Hidden by default */
+            width: 300px;
+            height: 100vh;
+            background: #fff;
+            z-index: 999;
+            transition: right 0.3s ease-in-out;
+            padding: 20px;
+            box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+            overflow-y: auto; /* Enable scrolling for long menus */
+        }
+
+        .mobile-nav.open {
+            right: 0; /* Slide in when open */
+        }
+
+        .mobile-nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .mobile-nav ul li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .mobile-nav ul li:last-child {
+            border-bottom: none;
+        }
+
+        .mobile-nav ul li a {
+            display: block;
+            color: #4B5563; /* gray-700 */
+            font-weight: 500;
+            padding: 8px 0;
+            transition: color 0.2s ease-in-out;
+        }
+
+        .mobile-nav ul li a.active,
+        .mobile-nav ul li a:hover {
+            color: #10B981; /* green-600 */
+        }
+
+        /* Dropdown specific styles for mobile nav */
+        .mobile-nav .dropdown-toggle {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .mobile-nav .dropdown-menu {
+            padding-left: 20px;
+            list-style: none;
+            margin-top: 5px;
+        }
+
+        .mobile-nav .dropdown-menu li {
+            border-bottom: none;
+            padding: 5px 0;
+        }
+
+        /* Deep Dropdown for mobile */
+        .mobile-nav .deep-dropdown .deep-dropdown-menu {
+            padding-left: 20px;
+        }
+
+        /* Hamburger icon for mobile */
+        .mobile-nav-toggle {
+            font-size: 28px;
+            color: #4B5563; /* gray-700 */
+            cursor: pointer;
+            line-height: 0;
+            transition: color 0.3s ease;
+        }
+
+        .mobile-nav-toggle:hover {
+            color: #10B981; /* green-600 */
+        }
+
+        /* Fixed header shadow on scroll */
+        body.scrolled #header {
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Desktop Dropdown Menus */
+        .main-nav .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: white;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            border-radius: 0.375rem; /* rounded-md */
+            min-width: 160px;
+            padding: 8px 0;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .main-nav .dropdown.group:hover .dropdown-menu {
+            display: block;
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .main-nav .dropdown-menu a {
+            padding: 10px 16px;
+            display: block;
+            color: #4B5563; /* gray-700 */
+            white-space: nowrap;
+            transition: background-color 0.15s ease, color 0.15s ease;
+        }
+
+        .main-nav .dropdown-menu a:hover {
+            background-color: #ECFDF5; /* green-100 */
+            color: #059669; /* green-700 */
+        }
+
+        /* Deep Dropdown specific styles for desktop */
+        .main-nav .deep-dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 100%; /* Positions it to the right of the parent menu item */
+            background-color: white;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            border-radius: 0.375rem; /* rounded-md */
+            min-width: 160px;
+            padding: 8px 0;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .main-nav .deep-dropdown.group:hover .deep-dropdown-menu {
+            display: block;
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        :root {
+            --primary-color: #1bbd36;
+            --text-color: #333;
+            --light-gray: #f5f5f5;
+            --dark-color: #222;
+            --light-color: #fff;
+            --gray-color: #f5f5f5;
+            --font-primary: 'Inter', sans-serif;
+        }
+        body {
+            font-family: var(--font-primary);
+            line-height: 1.6;
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+        }
+        .group:hover .group-hover\:block {
+            display: block;
+        }
+        .dropdown-submenu:hover .dropdown-menu-deep {
+            display: block;
+        }
+        .dropdown-menu-deep {
+            display: none;
+            position: absolute;
+            left: 100%;
+            top: 0;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 0.375rem;
+            margin-left: 0.5rem;
+            min-width: 12rem;
+            z-index: 20;
+        }
+        .about {
+            margin: 10px;
+            padding: 50px;
+            box-sizing: border-box;
+            padding-top: 50px
+        }
+        .about .row {
+            display: flex;
+            flex-wrap: wrap;
+            width: 100%;
+            font-size: 20px;
+            align-items: flex-start;
+        }
+        .about .col-left {
+            flex: 0 0 50%;
+            max-width: 50%;
+            padding-right: 20px;
+            padding-left: 0;
+        }
+        .about .col-right {
+            flex: 0 0 50%;
+            max-width: 50%;
+            padding-left: 20px;
+            padding-right: 0;
+        }
+        .about .col-right img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        .about .content h3 {
+            font-weight: 600;
+            font-size: 46px;
+        }
+        .section-title {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        .section-title h2 {
+            font-size: 32px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--dark-color);
+        }
+        .divider {
+            width: 50px;
+            height: 3px;
+            background: var(--primary-color);
+            margin: 0 auto 20px;
+        }
+        .section-description {
+            max-width: 600px;
+            margin: 0 auto 40px;
+            color: #666;
+            font-size: 16px;
+        }
+        .clients-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+            text-align: center;
+        }
+        .clients-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+        .client-item {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100px;
+        }
+        .client-item:hover {
+            transform: translateY(-5px);
+        }
+        .skills-section {
+            padding: 80px ;
+            text-align: center;
+        }
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+        .skill-item {
+            text-align: left;
+        }
+        .skill-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        .skill-name {
+            font-weight: 500;
+            font-size: 16px;
+            text-transform: uppercase;
+        }
+        .skill-percent {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        .progress-bar {
+            height: 10px;
+            background: var(--gray-color);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            background: var(--primary-color);
+            border-radius: 5px;
+            width: 0;
+            transition: width 1.5s ease-out;
+        }
+        .animate .progress-fill {
+            width: var(--progress-width);
+        }
+        @media (max-width: 768px) {
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+            .clients-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+            .about .col-left,
+            .about .col-right {
+                flex: 0 0 100%;
+                max-width: 100%;
+                padding-left: 0;
+                padding-right: 0;
+            }
+            .about .col-left {
+                margin-bottom: 20px;
+            }
+            .about .content h3 {
+                font-size: 36px;
+            }
+        }
+        @media (max-width: 480px) {
+            .clients-grid {
+                grid-template-columns: 1fr;
+            }
+            .section-title h2 {
+                font-size: 28px;
+            }
+        }
+        .section-description{
+            padding-top: 100px;
+        }
+        .green-space{
+            padding-top: 70px;
+        }
+
+
+
+
+         /* Base styles for the mobile nav */
+        .mobile-nav-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 998;
+            display: none; /* Hidden by default */
+        }
+
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            right: -300px; /* Hidden by default */
+            width: 300px;
+            height: 100vh;
+            background: #fff;
+            z-index: 999;
+            transition: right 0.3s ease-in-out;
+            padding: 20px;
+            box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+            overflow-y: auto; /* Enable scrolling for long menus */
+        }
+
+        .mobile-nav.open {
+            right: 0; /* Slide in when open */
+        }
+
+        .mobile-nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .mobile-nav ul li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .mobile-nav ul li:last-child {
+            border-bottom: none;
+        }
+
+        .mobile-nav ul li a {
+            display: block;
+            color: #4B5563; /* gray-700 */
+            font-weight: 500;
+            padding: 8px 0;
+            transition: color 0.2s ease-in-out;
+        }
+
+        .mobile-nav ul li a.active,
+        .mobile-nav ul li a:hover {
+            color: #10B981; /* green-600 */
+        }
+
+        /* Dropdown specific styles for mobile nav */
+        .mobile-nav .dropdown-toggle {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .mobile-nav .dropdown-menu {
+            padding-left: 20px;
+            list-style: none;
+            margin-top: 5px;
+        }
+
+        .mobile-nav .dropdown-menu li {
+            border-bottom: none;
+            padding: 5px 0;
+        }
+
+        /* Deep Dropdown for mobile */
+        .mobile-nav .deep-dropdown .deep-dropdown-menu {
+            padding-left: 20px;
+        }
+
+        /* Hamburger icon for mobile */
+        .mobile-nav-toggle {
+            font-size: 28px;
+            color: #4B5563; /* gray-700 */
+            cursor: pointer;
+            line-height: 0;
+            transition: color 0.3s ease;
+        }
+
+        .mobile-nav-toggle:hover {
+            color: #10B981; /* green-600 */
+        }
+
+        /* Fixed header shadow on scroll */
+        body.scrolled #header {
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Desktop Dropdown Menus */
+        .main-nav .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: white;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            border-radius: 0.375rem; /* rounded-md */
+            min-width: 160px;
+            padding: 8px 0;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .main-nav .dropdown.group:hover .dropdown-menu {
+            display: block;
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .main-nav .dropdown-menu a {
+            padding: 10px 16px;
+            display: block;
+            color: #4B5563; /* gray-700 */
+            white-space: nowrap;
+            transition: background-color 0.15s ease, color 0.15s ease;
+        }
+
+        .main-nav .dropdown-menu a:hover {
+            background-color: #ECFDF5; /* green-100 */
+            color: #059669; /* green-700 */
+        }
+
+        /* Deep Dropdown specific styles for desktop */
+        .main-nav .deep-dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 100%; /* Positions it to the right of the parent menu item */
+            background-color: white;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            border-radius: 0.375rem; /* rounded-md */
+            min-width: 160px;
+            padding: 8px 0;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .main-nav .deep-dropdown.group:hover .deep-dropdown-menu {
+            display: block;
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Custom styles for portfolio info overlay */
+        .portfolio-item .portfolio-info {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            top: 0;
+            background: rgba(40, 58, 90, 0.9); /* Dark overlay */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+        }
+
+        .portfolio-item:hover .portfolio-info {
+            opacity: 1;
+        }
+
+        .portfolio-info h4 {
+            margin-bottom: 0.5rem;
+        }
+
+        .portfolio-info p {
+            margin-bottom: 1rem;
+        }
+
+        .portfolio-info .link-icon {
+            display: inline-block;
+            margin: 0 0.5rem;
+            padding: 0.5rem;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            transition: background 0.3s ease;
+        }
+
+        .portfolio-info .link-icon:hover {
+            background: rgba(255, 255, 255, 0.4);
+        }
+
+        /* Modal specific styles */
+        #imageModal {
+            transition: opacity 0.3s ease-in-out;
+        }
+        #modalImage {
+            max-width: 100%;
+            max-height: 80vh; /* Limit height to prevent overflow on smaller screens */
+        }
+    </style>
+</head>
+<!-- ======= Header ======= -->
+    <header id="header" class="fixed top-0 w-full z-50 bg-white py-4 px-6 transition-all duration-300">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="logo text-3xl font-bold text-gray-800">
+                <a href="home.html">COMPANY<span class="text-green-600">.</span></a>
+            </h1>
+
+            <!-- Desktop Navigation -->
+            <nav class="main-nav hidden md:flex items-center space-x-8">
+                <ul class="flex items-center space-x-8">
+                    <li><a href="index.html" class="text-gray-600 font-medium hover:text-green-600 transition-colors duration-200">HOME</a></li>
+                    <li class="dropdown relative group">
+                        <a href="about.html" class="text-gray-600 font-medium hover:text-green-600 transition-colors duration-200 flex items-center">
+                            ABOUT<i class="bx bx-chevron-down ml-1"></i>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="about-Team.html">Team</a></li>
+                            <li><a href="about-Testimonials.html">Testimonials</a></li>
+                            <li class="deep-dropdown relative group">
+                                <a href="#" class="flex items-center justify-between">
+                                    Deep Dropdown <i class="bx bx-chevron-right ml-1"></i>
+                                </a>
+                                <ul class="deep-dropdown-menu">
+                                    <li><a href="#">Deep Dropdown 1</a></li>
+                                    <li><a href="#">Deep Dropdown 2</a></li>
+                                    <li><a href="#">Deep Dropdown 3</a></li>
+                                    <li><a href="#">Deep Dropdown 4</a></li>
+                                    <li><a href="#">Deep Dropdown 5</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><a href="Services.html" class="text-gray-600 font-medium hover:text-green-600 transition-colors duration-200">SERVICES</a></li>
+                    <li><a href="Portfolio.html" class="text-gray-600 font-medium hover:text-green-600 transition-colors duration-200">PORTFOLIO</a></li>
+                    <li><a href="Pricing.html" class="text-gray-600 font-medium hover:text-green-600 transition-colors duration-200">PRICING</a></li>
+                    <li><a href="Blog.html" class="text-gray-600 font-medium hover:text-green-600 transition-colors duration-200">BLOG</a></li>
+                    <li><a href="Contact.html" class="text-gray-600 font-medium hover:text-green-600 transition-colors duration-200">CONTACT</a></li>
+                </ul>
+            </nav>
+
+            <!-- Social Links (Desktop) -->
+            <div class="hidden md:flex items-center space-x-4">
+                <a href="#" class="text-gray-500 hover:text-green-600 transition-colors duration-200"><i class='bx bxl-twitter text-xl'></i></a>
+                <a href="#" class="text-gray-500 hover:text-green-600 transition-colors duration-200"><i class='bx bxl-facebook text-xl'></i></a>
+                <a href="#" class="text-gray-500 hover:text-green-600 transition-colors duration-200"><i class='bx bxl-instagram text-xl'></i></a>
+                <a href="#" class="text-gray-500 hover:text-green-600 transition-colors duration-200"><i class='bx bxl-linkedin text-xl'></i></a>
+            </div>
+
+            <!-- Mobile Navigation Toggle -->
+            <i class="bx bx-menu mobile-nav-toggle md:hidden" id="mobile-nav-toggle"></i>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation Menu -->
+    <div class="mobile-nav-overlay" id="mobile-nav-overlay"></div>
+    <nav class="mobile-nav" id="mobile-nav">
+        <i class="bx bx-x text-3xl cursor-pointer absolute top-4 right-4 text-gray-700" id="mobile-nav-close"></i>
+        <ul class="mt-12">
+            <li><a href="index.html" class="text-green-600 font-semibold">HOME</a></li>
+            <li class="dropdown">
+                <a href="about.html" class="flex items-center justify-between dropdown-toggle">ABOUT<i class="bx bx-chevron-down"></i></a>
+                <ul class="dropdown-menu hidden">
+                    <li><a href="about-Team.html">Team</a></li>
+                    <li><a href="about-Testimonials.html">Testimonials</a></li>
+                    <li class="deep-dropdown">
+                        <a href="#" class="flex items-center justify-between dropdown-toggle">Deep Dropdown <i class="bx bx-chevron-right"></i></a>
+                        <ul class="deep-dropdown-menu hidden">
+                            <li><a href="#">Deep Dropdown 1</a></li>
+                            <li><a href="#">Deep Dropdown 2</a></li>
+                            <li><a href="#">Deep Dropdown 3</a></li>
+                            <li><a href="#">Deep Dropdown 4</a></li>
+                            <li><a href="#">Deep Dropdown 5</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li><a href="Services.html">SERVICES</a></li>
+            <li><a href="Portfolio.html">PORTFOLIO</a></li>
+            <li><a href="Pricing.html">PRICING</a></li>
+            <li><a href="Blog.html">BLOG</a></li>
+            <li><a href="Contact.html">CONTACT</a></li>
+        </ul>
+    </nav>
+    <div class="green-space">
+     <section class="bg-green-600 text-white py-4 px-6 md:px-12 flex justify-between items-center ">
+        <h2 class="text-xl font-semibold">Portfolio</h2>
+        <div class="text-sm">
+            <a href="index.html" class="text-white hover:underline">Home</a>
+            <span class="mx-2">/</span>
+            <span class="font-semibold">Portfolio</span>
+        </div>
+    </section>
+</div>
+
+    
+ <!-- ======= Portfolio Section ======= -->
+    <section id="portfolio" class="portfolio py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="section-title text-center mb-12" data-aos="fade-up">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">Portfolio</h2>
+                <p class="text-gray-600 max-w-3xl mx-auto">Provident nihil minus quo consequatur non omnis maiores. Eos accusantium minus dolores iure perferendis tempore et consequatur.</p>
+            </div>
+
+            <div class="flex justify-center mb-8" data-aos="fade-up" data-aos-delay="100">
+                <ul id="portfolio-filters" class="flex flex-wrap justify-center space-x-2 sm:space-x-4 text-sm font-semibold">
+                    <li><button data-filter="*" class="filter-active px-6 py-2 rounded-full border border-green-600 bg-green-600 text-white hover:bg-green-700 transition-colors duration-200 mb-2">All</button></li>
+                    <li><button data-filter=".filter-app" class="px-6 py-2 rounded-full border border-gray-300 text-gray-700 hover:bg-green-500 hover:text-white transition-colors duration-200 mb-2">App</button></li>
+                    <li><button data-filter=".filter-card" class="px-6 py-2 rounded-full border border-gray-300 text-gray-700 hover:bg-green-500 hover:text-white transition-colors duration-200 mb-2">Card</button></li>
+                    <li><button data-filter=".filter-web" class="px-6 py-2 rounded-full border border-gray-300 text-gray-700 hover:bg-green-500 hover:text-white transition-colors duration-200 mb-2">Web</button></li>
+                </ul>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8" id="portfolio-container">
+                <div class="portfolio-item filter-app relative overflow-hidden rounded-lg shadow-md" data-aos="fade-up" data-aos-delay="200">
+                    <img src="masonry-portfolio-1.jpg" class="img-fluid w-full h-auto object-cover" alt="App 1" onerror="this.onerror=null;this.src='https://placehold.co/600x400/D4E6F1/000000?text=App+1';">
+                    <div class="portfolio-info">
+                        <h4 class="text-2xl font-bold mb-1">App 1</h4>
+                        <p class="text-lg">App</p>
+                        <!-- Link to trigger modal for App 1 -->
+                        <a href="masonry-portfolio-1.jpg" class="link-icon" data-image-src="https://placehold.co/600x400/D4E6F1/000000?text=App+1">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-maximize inline-block h-6 w-6 text-white"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="portfolio-item filter-card relative overflow-hidden rounded-lg shadow-md" data-aos="fade-up" data-aos-delay="300">
+                    <img src="masonry-portfolio-2.jpg" class="img-fluid w-full h-auto object-cover" alt="Card 1" onerror="this.onerror=null;this.src='https://placehold.co/600x400/C1E1C1/000000?text=Card+1';">
+                    <div class="portfolio-info">
+                        <h4 class="text-2xl font-bold mb-1">Card 1</h4>
+                        <p class="text-lg">Card</p>
+                        <!-- Link to trigger modal for Card 1 -->
+                        <a href="masonry-portfolio-2.jpg" class="link-icon" data-image-src="https://placehold.co/600x400/C1E1C1/000000?text=Card+1">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-maximize inline-block h-6 w-6 text-white"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="portfolio-item filter-web relative overflow-hidden rounded-lg shadow-md" data-aos="fade-up" data-aos-delay="400">
+                    <img src="masonry-portfolio-3.jpg" class="img-fluid w-full h-auto object-cover" alt="Web 1" onerror="this.onerror=null;this.src='https://placehold.co/600x400/AD9E53/000000?text=Web+1';">
+                    <div class="portfolio-info">
+                        <h4 class="text-2xl font-bold mb-1">Web 1</h4>
+                        <p class="text-lg">Web</p>
+                        <!-- Link to trigger modal for Web 1 -->
+                        <a href="masonry-portfolio-3.jpg" class="link-icon" data-image-src="https://placehold.co/600x400/AD9E53/000000?text=Web+1">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-maximize inline-block h-6 w-6 text-white"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="portfolio-item filter-web relative overflow-hidden rounded-lg shadow-md" data-aos="fade-up" data-aos-delay="200">
+                    <img src="masonry-portfolio-4.jpg" class="img-fluid w-full h-auto object-cover" alt="Web 2" onerror="this.onerror=null;this.src='https://placehold.co/600x400/90B880/000000?text=Web+2';">
+                    <div class="portfolio-info">
+                        <h4 class="text-2xl font-bold mb-1">Web 2</h4>
+                        <p class="text-lg">Web</p>
+                        <!-- Link to trigger modal for Web 2 -->
+                        <a href="masonry-portfolio-4.jpg" class="link-icon" data-image-src="https://placehold.co/600x400/90B880/000000?text=Web+2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-maximize inline-block h-6 w-6 text-white"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="portfolio-item filter-card relative overflow-hidden rounded-lg shadow-md" data-aos="fade-up" data-aos-delay="300">
+                    <img src="masonry-portfolio-5.jpg" class="img-fluid w-full h-auto object-cover" alt="Card 2" onerror="this.onerror=null;this.src='https://placehold.co/600x400/E59866/000000?text=Card+2';">
+                    <div class="portfolio-info">
+                        <h4 class="text-2xl font-bold mb-1">Card 2</h4>
+                        <p class="text-lg">Card</p>
+                        <!-- Link to trigger modal for Card 2 -->
+                        <a href="masonry-portfolio-5.jpg" class="link-icon" data-image-src="https://placehold.co/600x400/E59866/000000?text=Card+2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-maximize inline-block h-6 w-6 text-white"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="portfolio-item filter-app relative overflow-hidden rounded-lg shadow-md" data-aos="fade-up" data-aos-delay="400">
+                    <img src="masonry-portfolio-6.jpg" class="img-fluid w-full h-auto object-cover" alt="App 2" onerror="this.onerror=null;this.src='https://placehold.co/600x400/8B8C89/000000?text=App+2';">
+                    <div class="portfolio-info">
+                        <h4 class="text-2xl font-bold mb-1">App 2</h4>
+                        <p class="text-lg">App</p>
+                        <!-- Link to trigger modal for App 2 -->
+                        <a href="masonry-portfolio-6.jpg" class="link-icon" data-image-src="https://placehold.co/600x400/8B8C89/000000?text=App+2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-maximize inline-block h-6 w-6 text-white"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="portfolio-item filter-web relative overflow-hidden rounded-lg shadow-md" data-aos="fade-up" data-aos-delay="200">
+                    <img src="masonry-portfolio-7.jpg" class="img-fluid w-full h-auto object-cover" alt="Web 3" onerror="this.onerror=null;this.src='https://placehold.co/600x400/C1E1C1/000000?text=Web+3';">
+                    <div class="portfolio-info">
+                        <h4 class="text-2xl font-bold mb-1">Web 3</h4>
+                        <p class="text-lg">Web</p>
+                        <!-- Link to trigger modal for Web 3 -->
+                        <a href="masonry-portfolio-7.jpg" class="link-icon" data-image-src="https://placehold.co/600x400/C1E1C1/000000?text=Web+3">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-maximize inline-block h-6 w-6 text-white"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="portfolio-item filter-card relative overflow-hidden rounded-lg shadow-md" data-aos="fade-up" data-aos-delay="300">
+                    <img src="masonry-portfolio-8.jpg" class="img-fluid w-full h-auto object-cover" alt="Card 3" onerror="this.onerror=null;this.src='https://placehold.co/600x400/A7D9D3/000000?text=Card+3';">
+                    <div class="portfolio-info">
+                        <h4 class="text-2xl font-bold mb-1">Card 3</h4>
+                        <p class="text-lg">Card</p>
+                        <!-- Link to trigger modal for Card 3 -->
+                        <a href="masonry-portfolio-8.jpg" class="link-icon" data-image-src="https://placehold.co/600x400/A7D9D3/000000?text=Card+3">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-maximize inline-block h-6 w-6 text-white"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="portfolio-item filter-app relative overflow-hidden rounded-lg shadow-md" data-aos="fade-up" data-aos-delay="400">
+                    <img src="masonry-portfolio-9.jpg" class="img-fluid w-full h-auto object-cover" alt="App 3" onerror="this.onerror=null;this.src='https://placehold.co/600x400/7F8C8D/000000?text=App+3';">
+                    <div class="portfolio-info">
+                        <h4 class="text-2xl font-bold mb-1">App 3</h4>
+                        <p class="text-lg">App</p>
+                        <!-- Link to trigger modal for App 3 -->
+                        <a href="masonry-portfolio-9.jpg" class="link-icon" data-image-src="https://placehold.co/600x400/7F8C8D/000000?text=App+3">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-maximize inline-block h-6 w-6 text-white"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Image Modal/Lightbox -->
+    <div id="imageModal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 hidden">
+        <!-- Main modal content container -->
+        <div class="relative w-full max-w-4xl mx-4 my-8 rounded-lg overflow-hidden flex flex-col bg-gray-900">
+            <!-- Close Button -->
+            <button id="closeModal" class="absolute top-4 right-4 text-white text-3xl z-10 p-2 rounded-full bg-gray-800 bg-opacity-50 hover:bg-opacity-75 focus:outline-none">&times;</button>
+
+            <!-- Image Container with 16:9 Aspect Ratio -->
+            <div class="relative w-full overflow-hidden" style="padding-top: 56.25%;"> <!-- (9 / 16) * 100% = 56.25% for 16:9 aspect ratio -->
+                <img id="modalImage" src="" alt="Full size image" class="absolute inset-0 w-full h-full object-contain rounded-lg shadow-xl">
+            </div>
+
+            <!-- Previous Button -->
+            <div class="absolute inset-y-0 left-0 flex items-center">
+                <button id="prevImage" class="bg-gray-800 bg-opacity-50 hover:bg-opacity-75 text-white p-3 rounded-r-lg text-2xl focus:outline-none">&#10094;</button>
+            </div>
+            <!-- Next Button -->
+            <div class="absolute inset-y-0 right-0 flex items-center">
+                <button id="nextImage" class="bg-gray-800 bg-opacity-50 hover:bg-opacity-75 text-white p-3 rounded-l-lg text-2xl focus:outline-none">&#10095;</button>
+            </div>
+        </div>
+    </div>
+
+   
+
+     <footer class="bg-gray-900 text-gray-400 py-8 px-6 md:px-12 relative">
+        <div class="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 pb-6 border-b border-gray-700">
+            
+            <div>
+                <h3 class="text-white text-xl font-bold mb-4">Company</h3>
+                <address class="not-italic text-sm leading-relaxed">
+                    Au08 Adam Street<br>
+                    New York, NY 535022<br><br>
+                    <strong>Phone:</strong> +1 5589 55488 55<br>
+                    <strong>Email:</strong> info@example.com<br>
+                </address>
+                <div class="flex space-x-4 mt-6">
+                    <a href="#" class="w-9 h-9 flex items-center justify-center rounded-full bg-gray-800 hover:bg-green-600 transition-colors duration-300 text-gray-400 hover:text-white">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="w-9 h-9 flex items-center justify-center rounded-full bg-gray-800 hover:bg-green-600 transition-colors duration-300 text-gray-400 hover:text-white">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="w-9 h-9 flex items-center justify-center rounded-full bg-gray-800 hover:bg-green-600 transition-colors duration-300 text-gray-400 hover:text-white">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="w-9 h-9 flex items-center justify-center rounded-full bg-gray-800 hover:bg-green-600 transition-colors duration-300 text-gray-400 hover:text-white">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div>
+                <h3 class="text-white text-xl font-bold mb-4">Useful Links</h3>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="index.html" class="hover:text-green-600 transition-colors duration-300 flex items-center"><i class="fas fa-chevron-right text-green-600 text-xs mr-2"></i> Home</a></li>
+                    <li><a href="about.html" class="hover:text-green-600 transition-colors duration-300 flex items-center"><i class="fas fa-chevron-right text-green-600 text-xs mr-2"></i> About us</a></li>
+                    <li><a href="Services.html" class="hover:text-green-600 transition-colors duration-300 flex items-center"><i class="fas fa-chevron-right text-green-600 text-xs mr-2"></i> Services</a></li>
+                    <li><a href="Services.html" class="hover:text-green-600 transition-colors duration-300 flex items-center"><i class="fas fa-chevron-right text-green-600 text-xs mr-2"></i> Terms of service</a></li>
+                    <li><a href="Services.html" class="hover:text-green-600 transition-colors duration-300 flex items-center"><i class="fas fa-chevron-right text-green-600 text-xs mr-2"></i> Privacy policy</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h3 class="text-white text-xl font-bold mb-4">Our Services</h3>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="Services.html" class="hover:text-green-600 transition-colors duration-300 flex items-center"><i class="fas fa-chevron-right text-green-600 text-xs mr-2"></i> Web Design</a></li>
+                    <li><a href="Services.html" class="hover:text-green-600 transition-colors duration-300 flex items-center"><i class="fas fa-chevron-right text-green-600 text-xs mr-2"></i> Web Development</a></li>
+                    <li><a href="Services.html" class="hover:text-green-600 transition-colors duration-300 flex items-center"><i class="fas fa-chevron-right text-green-600 text-xs mr-2"></i> Product Management</a></li>
+                    <li><a href="Services.html" class="hover:text-green-600 transition-colors duration-300 flex items-center"><i class="fas fa-chevron-right text-green-600 text-xs mr-2"></i> Marketing</a></li>
+                    <li><a href="Services.html" class="hover:text-green-600 transition-colors duration-300 flex items-center"><i class="fas fa-chevron-right text-green-600 text-xs mr-2"></i> Graphic Design</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h3 class="text-white text-xl font-bold mb-4">Our Newsletter</h3>
+                <p class="text-sm mb-4">Subscribe to our newsletter and receive the latest news about our products and services!</p>
+                <form class="flex">
+                    <input type="email" placeholder="Enter your email" class="flex-grow p-3 rounded-l-md bg-gray-800 border border-gray-700 focus:outline-none focus:border-green-600 text-white text-sm">
+                    <button type="submit" class="bg-green-600 text-white px-6 py-3 rounded-r-md hover:bg-green-700 transition-colors duration-300 text-sm">Subscribe</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="container mx-auto text-center pt-8 text-sm text-gray-500">
+            <div class="mb-2">&copy; Copyright <strong>Company</strong>. All Rights Reserved</div>
+            <div>Designed by <a href="https://bootstrapmade.com/" class="text-green-600 hover:underline">Home</a> Distributed by <a href="https://themewagon.com/" class="text-green-600 hover:underline">Company-Home</a></div>
+        </div>
+
+        <a href="#" class="fixed bottom-6 right-6 bg-green-600 text-white p-3 rounded-full shadow-lg hover:bg-green-700 transition-colors duration-300 z-50">
+            <i class="fas fa-arrow-up text-lg"></i>
+        </a>
+    </footer>
+ <a href="#" id="back-to-top" class="back-to-top fixed bottom-8 right-8 bg-green-600 text-white p-3 rounded-full shadow-lg hover:bg-green-700 transition-opacity duration-300 opacity-0 invisible z-40">
+    <i class='bx bx-up-arrow-alt text-2xl'></i>
+</a>
+
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // --- Initialize AOS (Animate On Scroll) ---
+        AOS.init({
+            duration: 1000, // Duration of animation in ms
+            easing: 'ease-in-out', // Default easing for AOS animations
+            once: true, // Whether animation should happen only once - while scrolling down
+        });
+
+        // --- Back to Top Button ---
+        const backToTopButton = document.getElementById('back-to-top');
+
+        const toggleBackToTop = () => {
+            if (window.scrollY > 300) {
+                backToTopButton.classList.remove('opacity-0', 'invisible');
+                backToTopButton.classList.add('opacity-100', 'visible');
+            } else {
+                backToTopButton.classList.remove('opacity-100', 'visible');
+                backToTopButton.classList.add('opacity-0', 'invisible');
+            }
+        };
+        if (backToTopButton) {
+            window.addEventListener('scroll', toggleBackToTop);
+            toggleBackToTop(); // Call on load
+            backToTopButton.addEventListener('click', (e) => {
+                e.preventDefault();
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        }
+
+        // --- Portfolio Lightbox/Modal ---
+        let portfolioImages = [];
+        let currentImageIndex = 0;
+
+        const imageModal = document.getElementById('imageModal');
+        const modalImage = document.getElementById('modalImage');
+        const closeModalBtn = document.getElementById('closeModal');
+        const prevImageBtn = document.getElementById('prevImage');
+        const nextImageBtn = document.getElementById('nextImage');
+        const portfolioContainer = document.getElementById('portfolio-container');
+        const portfolioFilters = document.getElementById('portfolio-filters');
+
+        function openModal(imageSrc, index) {
+            modalImage.src = imageSrc;
+            currentImageIndex = index;
+            imageModal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden'; // Prevent scrolling background
+        }
+
+        function closeModal() {
+            imageModal.classList.add('hidden');
+            document.body.style.overflow = ''; // Restore scrolling
+        }
+
+        function showNextImage() {
+            currentImageIndex = (currentImageIndex + 1) % portfolioImages.length;
+            modalImage.src = portfolioImages[currentImageIndex];
+        }
+
+        function showPrevImage() {
+            currentImageIndex = (currentImageIndex - 1 + portfolioImages.length) % portfolioImages.length;
+            modalImage.src = portfolioImages[currentImageIndex];
+        }
+
+        if (closeModalBtn) closeModalBtn.addEventListener('click', closeModal);
+        if (nextImageBtn) nextImageBtn.addEventListener('click', showNextImage);
+        if (prevImageBtn) prevImageBtn.addEventListener('click', showPrevImage);
+
+        if (imageModal) {
+            imageModal.addEventListener('click', (event) => {
+                if (event.target === imageModal) {
+                    closeModal();
+                }
+            });
+        }
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' && imageModal && !imageModal.classList.contains('hidden')) {
+                closeModal();
+            }
+        });
+
+        // Populate portfolioImages array and handle clicks for opening modal
+        if (portfolioContainer) {
+            // Ensure portfolioImages is populated when content is ready
+            document.querySelectorAll('.portfolio-item img').forEach(img => {
+                portfolioImages.push(img.src);
+            });
+
+            portfolioContainer.addEventListener('click', (event) => {
+                const linkIcon = event.target.closest('.link-icon');
+                if (linkIcon) {
+                    event.preventDefault();
+
+                    const portfolioItem = linkIcon.closest('.portfolio-item');
+                    if (!portfolioItem) return;
+
+                    const imageElement = portfolioItem.querySelector('img');
+                    const imageSrc = imageElement ? imageElement.src : null;
+                    const index = portfolioImages.indexOf(imageSrc);
+
+                    if (imageSrc && index !== -1) {
+                        openModal(imageSrc, index);
+                    } else {
+                        console.error('Could not find image source or index for modal:', imageSrc, index);
+                    }
+                }
+            });
+        }
+
+        // --- Portfolio Filtering ---
+        const filterButtons = portfolioFilters ? portfolioFilters.querySelectorAll('button') : [];
+        const portfolioItems = document.querySelectorAll('.portfolio-item');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons and reset their styling
+                filterButtons.forEach(btn => {
+                    btn.classList.remove('filter-active', 'bg-green-600', 'text-white', 'border-green-600');
+                    btn.classList.add('bg-white', 'text-gray-700', 'border-gray-300', 'hover:bg-green-500', 'hover:text-white');
+                });
+
+                // Add active class to clicked button and update its styling
+                button.classList.add('filter-active', 'bg-green-600', 'text-white', 'border-green-600');
+                button.classList.remove('bg-white', 'text-gray-700', 'border-gray-300', 'hover:bg-green-500', 'hover:text-white');
+
+                const filterValue = button.getAttribute('data-filter');
+
+                portfolioItems.forEach(item => {
+                    if (filterValue === '*' || item.classList.contains(filterValue.substring(1))) {
+                        item.classList.remove('hidden'); // Show item
+                    } else {
+                        item.classList.add('hidden'); // Hide item
+                    }
+                });
+
+                AOS.refresh(); // Refresh AOS to account for display changes
+            });
+        });
+    });
+</script>
+</body>
+</html>
